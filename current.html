@@ -739,6 +739,86 @@ select.dd-input{cursor:pointer; -webkit-appearance:none; appearance:none; backgr
 .cr-foot{display:flex; gap:10px; padding:14px 26px; background:var(--bg-1); border-top:1px solid var(--border); flex-shrink:0}
 .cr-foot .grow{flex:1}
 
+/* ===== overlays: kebab menu + Diary / Dashboard / Settings ===== */
+.kebab{cursor:pointer}
+.kebab-menu{position:absolute; top:50px; right:16px; z-index:31; background:var(--bg-1); border-radius:var(--r-md); box-shadow:var(--inset),var(--shadow-pop); padding:6px; min-width:212px; display:none}
+.kebab-menu.on{display:block}
+.km-item{display:flex; align-items:center; gap:11px; width:100%; border:0; background:transparent; cursor:pointer; padding:10px 11px; border-radius:var(--r-sm); text-align:left; font:500 13px/1.2 var(--font-ui); color:var(--text-1)}
+.km-item:hover{background:var(--bg-2)}
+.km-item svg{width:17px; height:17px; stroke:currentColor; stroke-width:1.6; fill:none; color:var(--text-2)}
+.ovl{position:absolute; inset:0; z-index:18; display:none; flex-direction:column; background:var(--bg-3)}
+.ovl.on{display:flex}
+.ovl-head{display:flex; align-items:center; gap:12px; padding:15px 26px; background:var(--bg-1); border-bottom:1px solid var(--border); flex-shrink:0}
+.ovl-head .ic{width:34px; height:34px; border-radius:10px; display:grid; place-items:center; background:var(--bg-2); box-shadow:var(--inset); color:var(--text-2)}
+.ovl-head .ic svg{width:18px; height:18px; stroke:currentColor; stroke-width:1.6; fill:none}
+.ovl-head .tt b{font:560 16px/1.2 var(--font-ui); display:block}
+.ovl-head .tt span{font:400 11.5px/1.3 var(--font-ui); color:var(--text-3)}
+.ovl-aiassist{display:inline-flex; align-items:center; gap:7px; border:0; cursor:pointer; background:var(--intent); color:#fff; font:560 12px/1 var(--font-ui); padding:9px 14px; border-radius:99px}
+.ovl-aiassist i{font-style:normal}
+.ovl-step{font:500 11px/1 var(--font-mono); color:var(--text-3)}
+.ovl-x{width:32px; height:32px; border-radius:8px; display:grid; place-items:center; border:0; background:transparent; color:var(--text-2); cursor:pointer}
+.ovl-x:hover{background:var(--bg-3); color:var(--text-1)}
+.ovl-x svg{width:18px; height:18px; stroke:currentColor; stroke-width:1.8; fill:none}
+.ovl-body{flex:1; overflow:auto; padding:22px 26px 28px}
+.ovl-foot{display:flex; align-items:center; gap:10px; padding:14px 26px; background:var(--bg-1); border-top:1px solid var(--border); flex-shrink:0}
+.ovl-foot .grow{flex:1}
+/* diary */
+.dia-steps{display:flex; gap:7px; padding:13px 26px; overflow-x:auto; background:var(--bg-1); border-bottom:1px solid var(--border); flex-shrink:0}
+.dstep{display:inline-flex; align-items:center; gap:8px; padding:8px 13px; border-radius:99px; background:var(--bg-2); box-shadow:var(--inset); font:500 12px/1 var(--font-ui); color:var(--text-2); white-space:nowrap; cursor:pointer; border:0}
+.dstep .num{width:18px; height:18px; border-radius:50%; background:var(--bg-3); box-shadow:var(--inset); display:grid; place-items:center; font:600 10px/1 var(--font-mono); color:var(--text-3)}
+.dstep.on{background:var(--intent-wash); color:var(--text-1); box-shadow:inset 0 0 0 1px rgba(232,80,28,.3)}
+.dstep.on .num{background:var(--intent); color:#fff; box-shadow:none}
+.dstep.done .num{background:var(--st-done); color:#fff; box-shadow:none}
+.dia-hero{display:flex; align-items:center; gap:14px; background:var(--aurora),var(--bg-1); box-shadow:var(--inset),var(--shadow-card); border-radius:var(--r-lg); padding:18px; margin-bottom:18px}
+.dia-hero .hi{width:48px; height:48px; border-radius:13px; display:grid; place-items:center; background:var(--bg-2); box-shadow:var(--inset); color:var(--intent)}
+.dia-hero .hi svg{width:22px; height:22px; stroke:currentColor; stroke-width:1.6; fill:none}
+.dia-hero b{font:590 18px/1.2 var(--font-ui); display:block}
+.dia-hero span{font:400 12.5px/1.5 var(--font-ui); color:var(--text-2)}
+.dia-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:18px}
+.dia-card{background:var(--bg-1); border-radius:var(--r-lg); box-shadow:var(--inset),var(--shadow-card); padding:16px}
+.dia-card .l{font:500 10px/1.4 var(--font-ui); letter-spacing:.08em; text-transform:uppercase; color:var(--text-3)}
+.dia-card .v{font:560 15px/1.3 var(--font-ui); margin-top:6px}
+.dia-sec{background:var(--bg-1); border-radius:var(--r-lg); box-shadow:var(--inset),var(--shadow-card); padding:18px}
+.dia-sec h4{font:560 14px/1.2 var(--font-ui); margin-bottom:4px}
+.dia-sec p{font:400 12.5px/1.5 var(--font-ui); color:var(--text-2); margin-bottom:14px}
+.wchips{display:flex; gap:8px; flex-wrap:wrap}
+.wchip{padding:8px 13px; border-radius:99px; background:var(--bg-2); box-shadow:var(--inset); font:500 12px/1 var(--font-ui); color:var(--text-2); cursor:pointer; border:0}
+.wchip.on{background:var(--intent); color:#fff; box-shadow:none}
+.wf-row{display:grid; grid-template-columns:54px 1.6fr 64px 64px 1.5fr; gap:12px; align-items:center; padding:11px 6px; border-bottom:1px solid var(--border)}
+.wf-row.h{font:600 9.5px/1.4 var(--font-ui); letter-spacing:.08em; text-transform:uppercase; color:var(--text-3); border-bottom:1px solid var(--border)}
+.wf-tog{width:36px; height:20px; border-radius:99px; background:var(--bg-3); box-shadow:var(--inset); position:relative; cursor:pointer; border:0}
+.wf-tog::after{content:''; position:absolute; top:2px; left:2px; width:16px; height:16px; border-radius:50%; background:#fff; box-shadow:0 1px 3px rgba(0,0,0,.2); transition:left var(--t-fast)}
+.wf-tog.on{background:var(--intent)} .wf-tog.on::after{left:18px}
+.wf-in{height:32px; border:1px solid var(--border); border-radius:var(--r-sm); background:var(--bg-2); font:400 12.5px/1 var(--font-ui); color:var(--text-1); padding:0 9px; width:100%}
+.dia-2col{display:grid; grid-template-columns:1.5fr 1fr; gap:18px}
+/* dashboard */
+.dash-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+.dash-card{background:var(--bg-1); border-radius:var(--r-lg); box-shadow:var(--inset),var(--shadow-card); padding:18px}
+.dash-card h4{font:560 13px/1.2 var(--font-ui); margin-bottom:14px; display:flex; align-items:center; justify-content:space-between}
+.dash-card h4 .cc{font:500 10px/1 var(--font-mono); color:var(--text-3)}
+.bar-row{display:flex; align-items:center; gap:11px; margin-bottom:11px}
+.bar-row .bl{font:400 12px/1 var(--font-ui); color:var(--text-2); width:96px; display:flex; align-items:center; gap:7px}
+.bar-row .bl .d{width:8px; height:8px; border-radius:50%}
+.bar-row .bt{flex:1; height:8px; border-radius:99px; background:var(--bg-3); box-shadow:var(--inset); overflow:hidden}
+.bar-row .bt i{display:block; height:100%; border-radius:99px}
+.bar-row .bn{font:500 11px/1 var(--font-mono); color:var(--text-1); width:24px; text-align:right}
+.cal{display:grid; grid-template-columns:repeat(7,1fr); gap:3px; margin-top:6px}
+.cal .cd{aspect-ratio:1; display:grid; place-items:center; font:400 11px/1 var(--font-ui); color:var(--text-2); border-radius:6px}
+.cal .cd.hd{color:var(--text-3); font-size:9px; font-weight:600}
+.cal .cd.due{background:var(--intent-wash); color:var(--intent); font-weight:600}
+.cal .cd.today{background:var(--text-1); color:#fff}
+/* settings */
+.set-card{background:var(--bg-1); border-radius:var(--r-lg); box-shadow:var(--inset),var(--shadow-card); padding:16px 18px; margin-bottom:14px; max-width:620px}
+.set-row{display:flex; align-items:center; gap:14px; padding:13px 0; border-bottom:1px solid var(--border)}
+.set-row:last-child{border-bottom:0}
+.set-row .si{width:38px; height:38px; border-radius:10px; flex-shrink:0; display:grid; place-items:center; background:var(--bg-2); box-shadow:var(--inset); color:var(--text-2)}
+.set-row .si svg{width:18px; height:18px; stroke:currentColor; stroke-width:1.6; fill:none}
+.set-row .sm{flex:1}
+.set-row .sm b{font:560 13.5px/1.3 var(--font-ui); display:block}
+.set-row .sm span{font:400 11.5px/1.4 var(--font-ui); color:var(--text-3)}
+.set-grp{font:600 10px/1.4 var(--font-ui); letter-spacing:.1em; text-transform:uppercase; color:var(--text-3); margin:0 0 9px 2px}
+.set-avatar{width:46px; height:46px; border-radius:50%; background:var(--bg-2); box-shadow:var(--inset); display:grid; place-items:center; font:600 14px/1 var(--font-ui); color:var(--intent)}
+
 /* ---- harness ---- */
 .harness{display:flex; align-items:center; gap:14px; z-index:5}
 .hdots{display:flex; gap:9px; background:rgba(255,255,255,.55); padding:9px 14px; border-radius:99px; box-shadow:0 2px 10px rgba(22,24,28,.10), inset 0 0 0 1px rgba(22,24,28,.05); backdrop-filter:blur(6px)}
@@ -985,7 +1065,12 @@ select.dd-input{cursor:pointer; -webkit-appearance:none; appearance:none; backgr
         <button class="vseg" data-view="3d" onclick="setView('3d')"><svg viewBox="0 0 24 24"><path d="M12 3 4 7v10l8 4 8-4V7l-8-4zM4 7l8 4 8-4M12 11v10"/></svg> 3D</button>
         <button class="vseg" data-view="360" onclick="setView('360')"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="9" ry="4.5"/><path d="M5 12c0 3 3.1 5.5 7 5.5M19 12c0-3-3.1-5.5-7-5.5"/></svg> 360</button>
       </div>
-      <div class="kebab"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="12" cy="5" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="19" r="1.6"/></svg></div>
+      <div class="kebab" onclick="toggleKebab(event)"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="12" cy="5" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="19" r="1.6"/></svg></div>
+      <div class="kebab-menu" id="kebabMenu">
+        <button class="km-item" onclick="hideKebab();openDiary()"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM8 9h8M8 13h8M8 17h5"/></svg> Site Diary</button>
+        <button class="km-item" onclick="hideKebab();openDash()"><svg viewBox="0 0 24 24"><path d="M4 13h6V4H4zM14 20h6v-9h-6zM14 8h6V4h-6zM4 20h6v-4H4z"/></svg> Location Dashboard</button>
+        <button class="km-item" onclick="hideKebab();openSettings()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 13a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V20a2 2 0 1 1-4 0a1.6 1.6 0 0 0-2.7-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 2 13a2 2 0 1 1 0-4a1.6 1.6 0 0 0 1.1-2.7l-.1-.1A2 2 0 1 1 5.8 3.4l.1.1A1.6 1.6 0 0 0 8 4a2 2 0 1 1 4 0a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1A1.6 1.6 0 0 0 19.4 11a2 2 0 1 1 0 4z"/></svg> Settings</button>
+      </div>
     </div>
 
     <div class="console">
@@ -1050,6 +1135,45 @@ select.dd-input{cursor:pointer; -webkit-appearance:none; appearance:none; backgr
 
       <!-- summoned defect drawer — works across 2D / 3D / 360 -->
       <aside class="defdrawer" id="defDrawer"></aside>
+
+      <!-- Site Diary -->
+      <div class="ovl" id="diaryView">
+        <div class="ovl-head">
+          <button class="ovl-x" onclick="closeDiary()"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM8 9h8M8 13h8M8 17h5"/></svg></div>
+          <div class="tt"><b>Site Diary</b><span id="diaryScope">—</span></div>
+          <button class="ovl-aiassist"><i>✦</i> AI Assist</button>
+          <span class="ovl-step" id="diaryStepLbl">Step 1/9</span>
+        </div>
+        <div class="dia-steps" id="diarySteps"></div>
+        <div class="ovl-body" id="diaryBody"></div>
+        <div class="ovl-foot">
+          <button class="btn btn-secondary" style="width:auto;padding:11px 16px" onclick="diaryPrev()">Previous</button>
+          <button class="btn btn-secondary" style="width:auto;padding:11px 16px">Save draft</button>
+          <span class="grow"></span>
+          <button class="btn btn-primary" style="width:auto;padding:11px 20px" id="diaryNext" onclick="diaryNextBtn()">Next</button>
+        </div>
+      </div>
+
+      <!-- Location Dashboard -->
+      <div class="ovl" id="dashView">
+        <div class="ovl-head">
+          <button class="ovl-x" onclick="closeDash()"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 13h6V4H4zM14 20h6v-9h-6zM14 8h6V4h-6zM4 20h6v-4H4z"/></svg></div>
+          <div class="tt"><b>Location Dashboard</b><span id="dashScope">—</span></div>
+        </div>
+        <div class="ovl-body" id="dashBody"></div>
+      </div>
+
+      <!-- Settings -->
+      <div class="ovl" id="settingsView">
+        <div class="ovl-head">
+          <button class="ovl-x" onclick="closeSettings()"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M5 12a7 7 0 0 1 .1-1l-2-1.5 2-3.4 2.3 1a7 7 0 0 1 1.7-1l.3-2.6h4l.3 2.6a7 7 0 0 1 1.7 1l2.3-1 2 3.4-2 1.5a7 7 0 0 1 0 2l2 1.5-2 3.4-2.3-1a7 7 0 0 1-1.7 1l-.3 2.6h-4l-.3-2.6a7 7 0 0 1-1.7-1l-2.3 1-2-3.4 2-1.5a7 7 0 0 1-.1-1z"/></svg></div>
+          <div class="tt"><b>Settings</b><span>Workspace & capture preferences</span></div>
+        </div>
+        <div class="ovl-body" id="settingsBody"></div>
+      </div>
 
       <!-- floating view toggle (per room/space plan) -->
       <div class="plan-toggle" id="planToggle">
@@ -1226,7 +1350,7 @@ function setView(v){ /* 'site' | '2d' | '3d' | '360' (global toggle) */
     if(v==='2d') renderTwoD(); else if(v==='3d') render3D(); else render360();
   }
   if(v!=='2d') cancelPlace();
-  closeDefects(); closeCapture(); closeAI();
+  closeDefects(); closeCapture(); closeDiary(); closeDash(); closeSettings(); closeAI();
 }
 function goHome(){
   curView='home';
@@ -1777,11 +1901,85 @@ function defClearSel(){ defSel.clear(); renderDefects(); }
 function defAllToggle(){ const all=defVisible.length&&defVisible.every(d=>defSel.has(d.id)); defVisible.forEach(d=>all?defSel.delete(d.id):defSel.add(d.id)); renderDefects(); }
 function bulkMark(status){ scopedDefects().filter(passFilter).forEach(d=>{ if(defSel.has(d.id)) d.status=status; }); defSel.clear(); renderDefects(); }
 
+/* ===== kebab menu + Diary / Dashboard / Settings ===== */
+function toggleKebab(e){ e.stopPropagation(); document.getElementById('kebabMenu').classList.toggle('on'); }
+function hideKebab(){ document.getElementById('kebabMenu').classList.remove('on'); }
+const scopePath=()=>[sProj&&sProj.name, sBldg&&sBldg.name, sLevel&&sLevel.name].filter(Boolean).join(' › ')||'All sites';
+const scopeDefs=()=>DEFECTS.filter(d=> (!sProj||d.p===sProj) && (!sBldg||d.b===sBldg) && (!sLevel||d.l===sLevel) );
+
+/* Site Diary */
+const DIARY_STEPS=['General','Workforce','Progress','Materials','Equipment','Safety','Issues','Files','Review'];
+let diaryStep=0;
+function openDiary(){ if(!sProj){sProj=TREE.children[0];} diaryStep=0; document.getElementById('diaryScope').textContent=scopePath(); renderDiary(); document.getElementById('diaryView').classList.add('on'); }
+function closeDiary(){ document.getElementById('diaryView').classList.remove('on'); }
+function diaryGoto(i){ diaryStep=i; renderDiary(); }
+function diaryPrev(){ if(diaryStep>0){diaryStep--; renderDiary();} }
+function diaryNextBtn(){ if(diaryStep<DIARY_STEPS.length-1){diaryStep++; renderDiary();} else { closeDiary(); } }
+function renderDiary(){
+  document.getElementById('diaryStepLbl').textContent='Step '+(diaryStep+1)+'/'+DIARY_STEPS.length;
+  document.getElementById('diarySteps').innerHTML=DIARY_STEPS.map((s,i)=>`<button class="dstep${i===diaryStep?' on':''}${i<diaryStep?' done':''}" onclick="diaryGoto(${i})"><span class="num">${i<diaryStep?'✓':(i+1)}</span>${s}</button>`).join('');
+  document.getElementById('diaryNext').textContent = diaryStep===DIARY_STEPS.length-1?'Submit diary':'Next';
+  document.getElementById('diaryBody').innerHTML=diaryStepBody(diaryStep);
+}
+function diaryStepBody(i){
+  const name=DIARY_STEPS[i];
+  if(i===0) return `<div class="dia-hero"><div class="hi"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div><div><b>General information</b><span>Start with the diary context, live weather, and site identity.</span></div></div>
+    <div class="dia-grid"><div class="dia-card"><div class="l">Diary date</div><div class="v">2026-06-18</div></div><div class="dia-card"><div class="l">Device weather</div><div class="v">☀ Sunny</div></div><div class="dia-card"><div class="l">Location</div><div class="v" style="font-size:13px">${scopePath()}</div></div></div>
+    <div class="dia-sec"><h4>Day setup</h4><p>Thursday diary setup with editable weather inputs.</p>
+      <div class="dia-grid" style="margin-bottom:14px"><div><div class="l" style="margin-bottom:7px">Date</div><input class="wf-in" value="2026-06-18"></div><div><div class="l" style="margin-bottom:7px">Temperature (°C)</div><input class="wf-in" value="29.6"></div><div><div class="l" style="margin-bottom:7px">Wind</div><input class="wf-in" value="Light breeze"></div></div>
+      <div class="l" style="margin-bottom:8px">Weather</div><div class="wchips" id="wxChips">${['Sunny','Cloudy','Showers','Light rain','Heavy rain','Thunderstorms','Hail'].map((w,j)=>`<button class="wchip${j===0?' on':''}" onclick="pickWx(this)">${w}</button>`).join('')}</div>
+    </div>`;
+  if(i===1) return `<div class="dia-2col"><div class="dia-sec"><h4>Trades on site</h4><p>Enable a trade, then complete count, hours and activity.</p>
+      <div class="wf-row h"><span>Active</span><span>Trade</span><span>No.</span><span>Hours</span><span>Activity</span></div>
+      ${[['Carpenters',1,4,32,'Door frame backing'],['Bricklayers',0,0,0,''],['Electricians',1,3,24,'Containment + 2nd fix'],['Bobcat',0,0,0,''],['Plasterers',1,2,16,'Patch & make good']].map((r,j)=>`<div class="wf-row"><button class="wf-tog${r[1]?' on':''}" onclick="this.classList.toggle('on')"></button><span style="font:560 13px/1.3 var(--font-ui)">${r[0]}</span><input class="wf-in" value="${r[2]}"><input class="wf-in" value="${r[3]}"><input class="wf-in" value="${r[4]}" placeholder="Enable trade to edit"></div>`).join('')}
+    </div><div class="dia-card"><div class="l">Workforce</div><div class="v">13 people</div><div style="height:1px;background:var(--border);margin:14px 0"></div><div class="l">Linked forms</div><div class="v">1</div><div style="height:1px;background:var(--border);margin:14px 0"></div><div class="l">Evidence</div><div class="v">1 pinned</div></div></div>`;
+  if(i===8) return `<div class="dia-hero"><div class="hi"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg></div><div><b>Review & submit</b><span>Confirm the day's entries before submitting the diary.</span></div></div>
+    <div class="dia-grid">${DIARY_STEPS.slice(0,8).map(st=>`<div class="dia-card"><div class="l">${st}</div><div class="v" style="font-size:13px;color:var(--st-done)">✓ Complete</div></div>`).join('')}</div>
+    <div class="dia-sec"><h4>AI summary</h4><p>${'Carpenters on door frame backing; electricians on containment and 2nd fix; plasterers patching. 1 incident form linked. Weather sunny, 29.6°C.'}</p></div>`;
+  return `<div class="dia-hero"><div class="hi"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM8 9h8M8 13h6"/></svg></div><div><b>${name}</b><span>Log ${name.toLowerCase()} for this diary entry.</span></div></div>
+    <div class="dia-sec"><h4>${name}</h4><p>Capture ${name.toLowerCase()} notes, quantities and evidence for the day.</p><textarea class="dd-input" style="min-height:120px" placeholder="Add ${name.toLowerCase()} notes…"></textarea></div>`;
+}
+function pickWx(el){ el.parentElement.querySelectorAll('.wchip').forEach(c=>c.classList.remove('on')); el.classList.add('on'); }
+
+/* Location Dashboard */
+function openDash(){ if(!sProj){sProj=TREE.children[0];} document.getElementById('dashScope').textContent=scopePath(); renderDash(); document.getElementById('dashView').classList.add('on'); }
+function closeDash(){ document.getElementById('dashView').classList.remove('on'); }
+function renderDash(){
+  const ds=scopeDefs();
+  const stat=k=>ds.filter(d=>d.status===k).length, sev=k=>ds.filter(d=>d.sev===k).length;
+  const total=ds.length||1;
+  const barRow=(label,n,col)=>`<div class="bar-row"><span class="bl"><span class="d" style="background:${col}"></span>${label}</span><span class="bt"><i style="width:${Math.round(n/total*100)}%;background:${col}"></i></span><span class="bn">${n}</span></div>`;
+  const wp={}; ds.forEach(d=>{wp[d.wp]=(wp[d.wp]||0)+1;}); const wps=Object.entries(wp).sort((a,b)=>b[1]-a[1]).slice(0,6);
+  const wpMax=wps.length?wps[0][1]:1;
+  const recent=ds.slice(0,5);
+  document.getElementById('dashBody').innerHTML=`<div class="dash-grid">
+    <div class="dash-card"><h4>Status <span class="cc">${ds.length} total</span></h4>${barRow('Open',stat('Open'),'var(--intent)')}${barRow('Resolved',stat('Resolved'),'var(--st-done)')}${barRow('Closed',stat('Closed'),'var(--st-backlog)')}${barRow('Verified',stat('Verified'),'var(--st-review)')}</div>
+    <div class="dash-card"><h4>Severity</h4>${barRow('Critical',sev('Critical'),'var(--st-blocked)')}${barRow('High',sev('High'),'var(--intent)')}${barRow('Medium',sev('Medium'),'var(--st-review)')}${barRow('Low',sev('Low'),'var(--st-backlog)')}</div>
+    <div class="dash-card"><h4>Defects by work package</h4>${wps.map(([k,n])=>`<div class="bar-row"><span class="bl" style="width:140px">${k}</span><span class="bt"><i style="width:${Math.round(n/wpMax*100)}%;background:var(--intent)"></i></span><span class="bn">${n}</span></div>`).join('')||'<p style="font:400 12px/1.5 var(--font-ui);color:var(--text-3)">No data</p>'}</div>
+    <div class="dash-card"><h4>Defect deadlines <span class="cc">June 2026</span></h4><div class="cal">${['M','T','W','T','F','S','S'].map(d=>`<div class="cd hd">${d}</div>`).join('')}${Array.from({length:30},(_,k)=>{const day=k+1; const cls=day===19?'today':([4,11,12,27].includes(day)?'due':''); return `<div class="cd ${cls}">${day}</div>`;}).join('')}</div></div>
+  </div>
+  <div class="dash-card" style="margin-top:16px"><h4>Needs attention</h4>${recent.map(d=>`<div class="defrow" style="margin-bottom:8px"><span class="ic" style="color:${STAT_DOT[d.status]}"><svg viewBox="0 0 24 24"><path d="M12 9v4m0 4h.01M10.3 3.9 2.4 18a2 2 0 0 0 1.7 3h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></span><div class="tt"><b>${d.title}</b><span>${d.id} · ${d.r.name}</span></div><span class="chip"><span class="d" style="background:${STAT_DOT[d.status]}"></span>${d.status}</span></div>`).join('')}</div>`;
+}
+
+/* Settings */
+function openSettings(){ document.getElementById('settingsBody').innerHTML=settingsHTML(); document.getElementById('settingsView').classList.add('on'); }
+function closeSettings(){ document.getElementById('settingsView').classList.remove('on'); }
+function settingsHTML(){ return `<div class="set-grp">Account</div>
+  <div class="set-card"><div class="set-row"><span class="set-avatar">DU</span><div class="sm"><b>Demo User</b><span>Lead Inspector · demouser@asite.com</span></div></div></div>
+  <div class="set-grp">Appearance</div>
+  <div class="set-card"><div class="set-row"><span class="si"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></svg></span><div class="sm"><b>Dark mode</b><span>Light theme is active</span></div><button class="wf-tog" onclick="this.classList.toggle('on')"></button></div></div>
+  <div class="set-grp">Defect capture</div>
+  <div class="set-card"><div class="set-row"><span class="si"><svg viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 1 2-2h2l1.5-2h7L19 6h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="13" cy="12.5" r="3.2"/></svg></span><div class="sm"><b>Live AI Capture</b><span>Runs the simulated demo flow with a canned photo and mock analysis.</span></div><button class="wf-tog on" onclick="this.classList.toggle('on')"></button></div></div>
+  <div class="set-grp">Site Copilot widget</div>
+  <div class="set-card"><div class="set-row"><span class="si"><svg viewBox="0 0 24 24"><path d="M12 1.5c.4 4.9 1.6 6.1 6.5 6.5 1.6.13 1.6 2.37 0 2.5-4.9.4-6.1 1.6-6.5 6.5-.13 1.6-2.37 1.6-2.5 0-.4-4.9-1.6-6.1-6.5-6.5-1.6-.13-1.6-2.37 0-2.5 4.9-.4 6.1-1.6 6.5-6.5.13-1.6 2.37-1.6 2.5 0z" fill="var(--intent)" stroke="none"/></svg></span><div class="sm"><b>Site Copilot</b><span>Tap the spark orb on any plan to open Copilot.</span></div><span class="chip"><span class="d dot-done"></span>Enabled</span></div></div>`;
+}
+
 document.addEventListener('click', function(e){
   const lp=document.getElementById('levPop');
   if(lp && lp.classList.contains('on') && !e.target.closest('#levPop') && !e.target.closest('#levBtn')) lp.classList.remove('on');
   if(!e.target.closest('.fdrop')) document.querySelectorAll('.fmenu').forEach(m=>m.classList.remove('on'));
   if(!e.target.closest('#raiseMenu') && !e.target.closest('.fab-raise')) hideRaise();
+  if(!e.target.closest('#kebabMenu') && !e.target.closest('.kebab')) hideKebab();
 });
 genDefects();
 renderSite();

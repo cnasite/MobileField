@@ -717,6 +717,83 @@ select.dd-input{cursor:pointer; -webkit-appearance:none; appearance:none; backgr
 .cr-foot{display:flex; gap:10px; padding:14px 26px; background:var(--bg-1); border-top:1px solid var(--border); flex-shrink:0}
 .cr-foot .grow{flex:1}
 
+/* ===== overlays (index improved-UX): kebab + Diary / Dashboard / Settings ===== */
+.kebab{cursor:pointer}
+.kebab-menu{position:absolute; top:50px; right:16px; z-index:31; background:var(--bg-1); border-radius:var(--r-md); box-shadow:var(--inset),var(--shadow-pop); padding:6px; min-width:212px; display:none}
+.kebab-menu.on{display:block}
+.km-item{display:flex; align-items:center; gap:11px; width:100%; border:0; background:transparent; cursor:pointer; padding:10px 11px; border-radius:var(--r-sm); text-align:left; font:500 13px/1.2 var(--font-ui); color:var(--text-1)}
+.km-item:hover{background:var(--bg-2)}
+.km-item svg{width:17px; height:17px; stroke:currentColor; stroke-width:1.6; fill:none; color:var(--text-2)}
+.ovl{position:absolute; inset:0; z-index:18; display:none; flex-direction:column; background:var(--bg-3)}
+.ovl.on{display:flex}
+.ovl-head{display:flex; align-items:center; gap:12px; padding:15px 26px; background:transparent; flex-shrink:0; position:relative; z-index:2}
+.ovl-head::before{content:''; position:absolute; inset:0 0 auto 0; height:160px; background:var(--aurora); pointer-events:none; z-index:-1}
+.ovl-head .ic{width:36px; height:36px; border-radius:11px; display:grid; place-items:center; background:var(--bg-1); box-shadow:var(--inset),var(--shadow-card); color:var(--intent)}
+.ovl-head .ic svg{width:19px; height:19px; stroke:currentColor; stroke-width:1.6; fill:none}
+.ovl-head .tt b{font:590 18px/1.2 var(--font-ui); letter-spacing:-.01em; display:block}
+.ovl-head .tt span{font:400 11.5px/1.3 var(--font-ui); color:var(--text-3)}
+.ovl-badge{margin-left:auto; display:inline-flex; align-items:center; gap:6px; font:600 9.5px/1 var(--font-ui); letter-spacing:.06em; text-transform:uppercase; color:var(--intent); background:var(--intent-wash); padding:7px 11px; border-radius:99px}
+.ovl-x{width:32px; height:32px; border-radius:8px; display:grid; place-items:center; border:0; background:var(--bg-1); box-shadow:var(--inset); color:var(--text-2); cursor:pointer}
+.ovl-x:hover{color:var(--text-1)}
+.ovl-x svg{width:18px; height:18px; stroke:currentColor; stroke-width:1.8; fill:none}
+.ovl-body{flex:1; overflow:auto; padding:8px 26px 28px}
+/* diary — AI-drafted, jump-anywhere two-pane */
+.dia2{flex:1; display:flex; min-height:0}
+.dia2-nav{width:206px; flex-shrink:0; padding:16px 14px; overflow:auto}
+.dia2-nav .nh{font:600 10px/1.4 var(--font-ui); letter-spacing:.1em; text-transform:uppercase; color:var(--text-3); margin:0 0 9px 8px}
+.dia2-nav button{display:flex; align-items:center; gap:9px; width:100%; border:0; background:transparent; cursor:pointer; padding:9px 10px; border-radius:var(--r-sm); text-align:left; font:500 12.5px/1 var(--font-ui); color:var(--text-2)}
+.dia2-nav button:hover{background:var(--bg-2); color:var(--text-1)}
+.dia2-nav button.on{background:var(--intent-wash); color:var(--text-1)}
+.dia2-nav button .tick{margin-left:auto; color:var(--st-done); font-size:11px}
+.dia2-main{flex:1; overflow:auto; padding:18px 26px 40px; background:var(--bg-1); border-left:1px solid var(--border)}
+.dbanner{display:flex; align-items:center; gap:14px; background:var(--aurora),var(--bg-2); box-shadow:var(--inset); border-radius:var(--r-lg); padding:16px 18px; margin-bottom:18px}
+.dbanner .hi{width:40px; height:40px; border-radius:11px; display:grid; place-items:center; background:var(--bg-1); box-shadow:var(--inset); flex-shrink:0}
+.dbanner .hi svg{width:19px;height:19px} .dbanner .hi .spark path{fill:var(--intent)}
+.dbanner b{font:560 14px/1.3 var(--font-ui); display:block}
+.dbanner span{font:400 12px/1.5 var(--font-ui); color:var(--text-2)}
+.dsection{padding:16px 0; border-bottom:1px solid var(--border); scroll-margin-top:10px}
+.dsection:last-child{border-bottom:0}
+.dsection h4{display:flex; align-items:center; gap:8px; font:560 14px/1.2 var(--font-ui)}
+.dsection h4 .spark{width:14px;height:14px} .dsection h4 .spark path{fill:var(--intent)}
+.dsection h4 .aitag{margin-left:auto; font:600 9px/1 var(--font-ui); letter-spacing:.06em; text-transform:uppercase; color:var(--intent); background:var(--intent-wash); padding:4px 8px; border-radius:99px}
+.dsection textarea{width:100%; margin-top:10px; min-height:62px; padding:11px 13px; background:var(--bg-2); border:1px solid var(--border); border-radius:var(--r-md); font:400 13px/1.55 var(--font-ui); color:var(--text-1); resize:none}
+.dsection textarea:focus{outline:0; border-color:var(--intent); box-shadow:0 0 0 3px var(--intent-wash); background:var(--bg-1)}
+/* dashboard */
+.dash-insight{display:flex; align-items:center; gap:13px; background:var(--bg-1); box-shadow:var(--inset),var(--shadow-card); border-radius:var(--r-lg); padding:15px 18px; margin-bottom:16px}
+.dash-insight .hi{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:var(--bg-2);box-shadow:var(--inset);flex-shrink:0}
+.dash-insight .hi .spark{width:17px;height:17px} .dash-insight .hi .spark path{fill:var(--intent)}
+.dash-insight p{font:400 13px/1.5 var(--font-ui); color:var(--text-2)} .dash-insight p b{color:var(--text-1); font-weight:560}
+.dash-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+.dash-card{background:var(--bg-1); border-radius:var(--r-lg); box-shadow:var(--inset),var(--shadow-card); padding:18px}
+.dash-card h4{font:560 13px/1.2 var(--font-ui); margin-bottom:14px; display:flex; align-items:center; justify-content:space-between}
+.dash-card h4 .cc{font:500 10px/1 var(--font-mono); color:var(--text-3)}
+.bar-row{display:flex; align-items:center; gap:11px; margin-bottom:11px}
+.bar-row .bl{font:400 12px/1 var(--font-ui); color:var(--text-2); width:100px; display:flex; align-items:center; gap:7px}
+.bar-row .bl .d{width:8px; height:8px; border-radius:50%}
+.bar-row .bt{flex:1; height:8px; border-radius:99px; background:var(--bg-3); box-shadow:var(--inset); overflow:hidden}
+.bar-row .bt i{display:block; height:100%; border-radius:99px}
+.bar-row .bn{font:500 11px/1 var(--font-mono); color:var(--text-1); width:24px; text-align:right}
+.cal{display:grid; grid-template-columns:repeat(7,1fr); gap:3px; margin-top:6px}
+.cal .cd{aspect-ratio:1; display:grid; place-items:center; font:400 11px/1 var(--font-ui); color:var(--text-2); border-radius:6px}
+.cal .cd.hd{color:var(--text-3); font-size:9px; font-weight:600}
+.cal .cd.due{background:var(--intent-wash); color:var(--intent); font-weight:600}
+.cal .cd.today{background:var(--text-1); color:#fff}
+/* settings */
+.set-card{background:var(--bg-1); border-radius:var(--r-lg); box-shadow:var(--inset),var(--shadow-card); padding:6px 18px; margin-bottom:14px; max-width:640px}
+.set-row{display:flex; align-items:center; gap:14px; padding:14px 0; border-bottom:1px solid var(--border)}
+.set-row:last-child{border-bottom:0}
+.set-row .si{width:38px; height:38px; border-radius:10px; flex-shrink:0; display:grid; place-items:center; background:var(--bg-2); box-shadow:var(--inset); color:var(--text-2)}
+.set-row .si svg{width:18px; height:18px; stroke:currentColor; stroke-width:1.6; fill:none}
+.set-row .si .spark path{fill:var(--intent)}
+.set-row .sm{flex:1}
+.set-row .sm b{font:560 13.5px/1.3 var(--font-ui); display:block}
+.set-row .sm span{font:400 11.5px/1.4 var(--font-ui); color:var(--text-3)}
+.set-grp{font:600 10px/1.4 var(--font-ui); letter-spacing:.1em; text-transform:uppercase; color:var(--text-3); margin:0 0 9px 2px}
+.set-avatar{width:46px; height:46px; border-radius:50%; background:var(--bg-2); box-shadow:var(--inset); display:grid; place-items:center; font:600 14px/1 var(--font-ui); color:var(--intent)}
+.wf-tog{width:38px; height:22px; border-radius:99px; background:var(--bg-3); box-shadow:var(--inset); position:relative; cursor:pointer; border:0; flex-shrink:0}
+.wf-tog::after{content:''; position:absolute; top:2px; left:2px; width:18px; height:18px; border-radius:50%; background:#fff; box-shadow:0 1px 3px rgba(0,0,0,.2); transition:left var(--t-fast)}
+.wf-tog.on{background:var(--intent)} .wf-tog.on::after{left:18px}
+
 /* ---- harness ---- */
 .harness{display:flex; align-items:center; gap:14px; z-index:5}
 .hdots{display:flex; gap:9px; background:rgba(255,255,255,.55); padding:9px 14px; border-radius:99px; box-shadow:0 2px 10px rgba(22,24,28,.10), inset 0 0 0 1px rgba(22,24,28,.05); backdrop-filter:blur(6px)}
@@ -958,7 +1035,12 @@ select.dd-input{cursor:pointer; -webkit-appearance:none; appearance:none; backgr
     <div class="appbar">
       <div class="crumb" id="appCrumb"></div>
       <span style="margin-left:auto"></span>
-      <div class="kebab"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="12" cy="5" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="19" r="1.6"/></svg></div>
+      <div class="kebab" onclick="toggleKebab(event)"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="12" cy="5" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="19" r="1.6"/></svg></div>
+      <div class="kebab-menu" id="kebabMenu">
+        <button class="km-item" onclick="hideKebab();openDiary()"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM8 9h8M8 13h8M8 17h5"/></svg> Site Diary</button>
+        <button class="km-item" onclick="hideKebab();openDash()"><svg viewBox="0 0 24 24"><path d="M4 13h6V4H4zM14 20h6v-9h-6zM14 8h6V4h-6zM4 20h6v-4H4z"/></svg> Location Dashboard</button>
+        <button class="km-item" onclick="hideKebab();openSettings()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M5 12a7 7 0 0 1 .1-1l-2-1.5 2-3.4 2.3 1a7 7 0 0 1 1.7-1l.3-2.6h4l.3 2.6a7 7 0 0 1 1.7 1l2.3-1 2 3.4-2 1.5a7 7 0 0 1 0 2l2 1.5-2 3.4-2.3-1a7 7 0 0 1-1.7 1l-.3 2.6h-4l-.3-2.6a7 7 0 0 1-1.7-1l-2.3 1-2-3.4 2-1.5a7 7 0 0 1-.1-1z"/></svg> Settings</button>
+      </div>
     </div>
 
     <div class="console">
@@ -1028,6 +1110,41 @@ select.dd-input{cursor:pointer; -webkit-appearance:none; appearance:none; backgr
 
       <!-- summoned defect drawer — works across 2D / 3D / 360 -->
       <aside class="defdrawer" id="defDrawer"></aside>
+
+      <!-- Site Diary (AI-drafted review) -->
+      <div class="ovl" id="diaryView">
+        <div class="ovl-head">
+          <button class="ovl-x" onclick="closeDiary()"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <div class="ic"><svg class="spark" viewBox="0 0 24 24"><path d="M12 1.5c.4 4.9 1.6 6.1 6.5 6.5 1.6.13 1.6 2.37 0 2.5-4.9.4-6.1 1.6-6.5 6.5-.13 1.6-2.37 1.6-2.5 0-.4-4.9-1.6-6.1-6.5-6.5-1.6-.13-1.6-2.37 0-2.5 4.9-.4 6.1-1.6 6.5-6.5.13-1.6 2.37-1.6 2.5 0z"/></svg></div>
+          <div class="tt"><b>Site Diary</b><span id="diaryScope">—</span></div>
+          <span class="ovl-badge"><svg class="spark" viewBox="0 0 24 24"><path d="M12 1.5c.4 4.9 1.6 6.1 6.5 6.5 1.6.13 1.6 2.37 0 2.5-4.9.4-6.1 1.6-6.5 6.5-.13 1.6-2.37 1.6-2.5 0-.4-4.9-1.6-6.1-6.5-6.5-1.6-.13-1.6-2.37 0-2.5 4.9-.4 6.1-1.6 6.5-6.5.13-1.6 2.37-1.6 2.5 0z"/></svg> AI drafted</span>
+          <button class="btn btn-primary" style="width:auto; padding:10px 18px; margin-left:8px" onclick="closeDiary()"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg> Submit diary</button>
+        </div>
+        <div class="dia2">
+          <div class="dia2-nav" id="diaryNav"></div>
+          <div class="dia2-main" id="diaryMain"></div>
+        </div>
+      </div>
+
+      <!-- Location Dashboard -->
+      <div class="ovl" id="dashView">
+        <div class="ovl-head">
+          <button class="ovl-x" onclick="closeDash()"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <div class="ic"><svg viewBox="0 0 24 24" stroke="var(--intent)"><path d="M4 13h6V4H4zM14 20h6v-9h-6zM14 8h6V4h-6zM4 20h6v-4H4z"/></svg></div>
+          <div class="tt"><b>Location Dashboard</b><span id="dashScope">—</span></div>
+        </div>
+        <div class="ovl-body" id="dashBody"></div>
+      </div>
+
+      <!-- Settings -->
+      <div class="ovl" id="settingsView">
+        <div class="ovl-head">
+          <button class="ovl-x" onclick="closeSettings()"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <div class="ic"><svg viewBox="0 0 24 24" stroke="var(--intent)"><circle cx="12" cy="12" r="3"/><path d="M5 12a7 7 0 0 1 .1-1l-2-1.5 2-3.4 2.3 1a7 7 0 0 1 1.7-1l.3-2.6h4l.3 2.6a7 7 0 0 1 1.7 1l2.3-1 2 3.4-2 1.5a7 7 0 0 1 0 2l2 1.5-2 3.4-2.3-1a7 7 0 0 1-1.7 1l-.3 2.6h-4l-.3-2.6a7 7 0 0 1-1.7-1l-2.3 1-2-3.4 2-1.5a7 7 0 0 1-.1-1z"/></svg></div>
+          <div class="tt"><b>Settings</b><span>Workspace & capture preferences</span></div>
+        </div>
+        <div class="ovl-body" id="settingsBody"></div>
+      </div>
 
       <!-- floating view toggle (per room/space plan) -->
       <div class="plan-toggle" id="planToggle">
@@ -1211,7 +1328,7 @@ function goHome(){
   document.getElementById('view2d').classList.remove('show');
   document.getElementById('stub3d').classList.remove('show');
   document.getElementById('stub360').classList.remove('show');
-  cancelPlace(); closeDrawer(); closeAI(); closeDefects(); closeCapture(); renderSite();
+  cancelPlace(); closeDrawer(); closeAI(); closeDefects(); closeCapture(); closeDiary(); closeDash(); closeSettings(); renderSite();
 }
 /* ===== Site navigator (tree drill-down + context pane) ===== */
 const TREE={id:'root',name:'All sites',children:[
@@ -1736,11 +1853,79 @@ function defClearSel(){ defSel.clear(); renderDefects(); }
 function defAllToggle(){ const all=defVisible.length&&defVisible.every(d=>defSel.has(d.id)); defVisible.forEach(d=>all?defSel.delete(d.id):defSel.add(d.id)); renderDefects(); }
 function bulkMark(status){ scopedDefects().filter(passFilter).forEach(d=>{ if(defSel.has(d.id)) d.status=status; }); defSel.clear(); renderDefects(); }
 
+/* ===== kebab + Diary / Dashboard / Settings (index improved-UX) ===== */
+function toggleKebab(e){ e.stopPropagation(); document.getElementById('kebabMenu').classList.toggle('on'); }
+function hideKebab(){ document.getElementById('kebabMenu').classList.remove('on'); }
+const scopePath=()=>[sProj&&sProj.name, sBldg&&sBldg.name, sLevel&&sLevel.name].filter(Boolean).join(' › ')||'All sites';
+const scopeDefs=()=>DEFECTS.filter(d=> (!sProj||d.p===sProj) && (!sBldg||d.b===sBldg) && (!sLevel||d.l===sLevel) );
+const SPARK='<svg class="spark" viewBox="0 0 24 24"><path d="M12 1.5c.4 4.9 1.6 6.1 6.5 6.5 1.6.13 1.6 2.37 0 2.5-4.9.4-6.1 1.6-6.5 6.5-.13 1.6-2.37 1.6-2.5 0-.4-4.9-1.6-6.1-6.5-6.5-1.6-.13-1.6-2.37 0-2.5 4.9-.4 6.1-1.6 6.5-6.5.13-1.6 2.37-1.6 2.5 0z"/></svg>';
+
+/* Site Diary — AI drafted, review & submit */
+const DIARY_SECTIONS=[
+ ['General','Diary date 18 Jun 2026. Weather sunny, 29.6°C, light breeze. Location SCOPE. Day shift 07:00–16:00.'],
+ ['Workforce','13 workers across 5 trades — carpenters on door-frame backing, electricians on containment + 2nd fix, plasterers patching and making good. Bobcat off-hired.'],
+ ['Progress','Level-2 internal fit-out continued; ceiling closure after MEP checks; lobby housekeeping completed by finishing crew.'],
+ ['Materials','Plasterboard and grout delivered (2 pallets) to the Wing C store; insulation batches checked against delivery note.'],
+ ['Equipment','Scissor lift on site for ceiling works; small tools PAT-tested; generator on standby.'],
+ ['Safety','Toolbox talk on working at height; 1 near-miss logged and closed; walkways re-marked.'],
+ ['Issues','2 defects raised today (1 critical — exposed wiring); 1 RFI awaiting consultant response.'],
+ ['Files','3 progress photos and 1 inspection form attached and linked to this entry.']
+];
+let diaryActive=0;
+function openDiary(){ if(!sProj){sProj=TREE.children[0];} document.getElementById('diaryScope').textContent=scopePath(); diaryActive=0; renderDiary(); document.getElementById('diaryView').classList.add('on'); closeAI(); }
+function closeDiary(){ const v=document.getElementById('diaryView'); if(v) v.classList.remove('on'); }
+function renderDiary(){
+  const navItems=DIARY_SECTIONS.map((s,i)=>`<button class="${i===diaryActive?'on':''}" onclick="diaryJump(${i})">${s[0]}<span class="tick">✓</span></button>`).join('');
+  document.getElementById('diaryNav').innerHTML=`<div class="nh">Sections</div>${navItems}<button class="${diaryActive===8?'on':''}" onclick="diaryJump(8)">Review</button>`;
+  const sp=scopePath();
+  document.getElementById('diaryMain').innerHTML=
+    `<div class="dbanner"><div class="hi">${SPARK}</div><div><b>Asite Intelligence drafted today's diary</b><span>Compiled from 13 workers on site, 4 inspections and 2 linked forms — review each section, edit if needed, then submit.</span></div><button class="btn btn-secondary" style="width:auto;padding:9px 14px" onclick="renderDiary()">Regenerate</button></div>`+
+    DIARY_SECTIONS.map((s,i)=>`<div class="dsection" id="dsec${i}"><h4>${SPARK} ${s[0]} <span class="aitag">drafted</span></h4><textarea>${s[1].replace('SCOPE',sp)}</textarea></div>`).join('')+
+    `<div class="dsection" id="dsec8"><h4>Review & submit</h4><textarea style="min-height:44px" readonly>All 8 sections drafted and ready. Submitting logs the diary for ${sp}.</textarea></div>`;
+}
+function diaryJump(i){ diaryActive=i; document.querySelectorAll('#diaryNav button').forEach((b,j)=>b.classList.toggle('on', j===i)); const el=document.getElementById('dsec'+i); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); }
+
+/* Location Dashboard (scope-aware + AI insight) */
+function openDash(){ if(!sProj){sProj=TREE.children[0];} document.getElementById('dashScope').textContent=scopePath(); renderDash(); document.getElementById('dashView').classList.add('on'); closeAI(); }
+function closeDash(){ const v=document.getElementById('dashView'); if(v) v.classList.remove('on'); }
+function renderDash(){
+  const ds=scopeDefs();
+  const stat=k=>ds.filter(d=>d.status===k).length, sev=k=>ds.filter(d=>d.sev===k).length;
+  const total=ds.length||1;
+  const crit=ds.filter(d=>d.sev==='Critical'&&d.status==='Open').length, open=stat('Open');
+  const barRow=(label,n,col)=>`<div class="bar-row"><span class="bl"><span class="d" style="background:${col}"></span>${label}</span><span class="bt"><i style="width:${Math.round(n/total*100)}%;background:${col}"></i></span><span class="bn">${n}</span></div>`;
+  const wp={}; ds.forEach(d=>{wp[d.wp]=(wp[d.wp]||0)+1;}); const wps=Object.entries(wp).sort((a,b)=>b[1]-a[1]).slice(0,6); const wpMax=wps.length?wps[0][1]:1;
+  const recent=ds.filter(d=>d.status==='Open').slice(0,5);
+  document.getElementById('dashBody').innerHTML=
+    `<div class="dash-insight"><div class="hi">${SPARK}</div><p><b>${crit} critical</b> still open and <b>${open} open</b> in total across ${scopePath()}. Prioritise electrical works — it carries the most open items.</p></div>`+
+    `<div class="dash-grid">
+      <div class="dash-card"><h4>Status <span class="cc">${ds.length} total</span></h4>${barRow('Open',stat('Open'),'var(--intent)')}${barRow('Resolved',stat('Resolved'),'var(--st-done)')}${barRow('Closed',stat('Closed'),'var(--st-backlog)')}${barRow('Verified',stat('Verified'),'var(--st-review)')}</div>
+      <div class="dash-card"><h4>Severity</h4>${barRow('Critical',sev('Critical'),'var(--st-blocked)')}${barRow('High',sev('High'),'var(--intent)')}${barRow('Medium',sev('Medium'),'var(--st-review)')}${barRow('Low',sev('Low'),'var(--st-backlog)')}</div>
+      <div class="dash-card"><h4>Defects by work package</h4>${wps.map(([k,n])=>`<div class="bar-row"><span class="bl" style="width:140px">${k}</span><span class="bt"><i style="width:${Math.round(n/wpMax*100)}%;background:var(--intent)"></i></span><span class="bn">${n}</span></div>`).join('')||'<p style="font:400 12px/1.5 var(--font-ui);color:var(--text-3)">No data</p>'}</div>
+      <div class="dash-card"><h4>Defect deadlines <span class="cc">June 2026</span></h4><div class="cal">${['M','T','W','T','F','S','S'].map(d=>`<div class="cd hd">${d}</div>`).join('')}${Array.from({length:30},(_,k)=>{const day=k+1; const cls=day===19?'today':([4,11,12,27].includes(day)?'due':''); return `<div class="cd ${cls}">${day}</div>`;}).join('')}</div></div>
+    </div>`;
+}
+
+/* Settings */
+function openSettings(){ document.getElementById('settingsBody').innerHTML=settingsHTML(); document.getElementById('settingsView').classList.add('on'); closeAI(); }
+function closeSettings(){ const v=document.getElementById('settingsView'); if(v) v.classList.remove('on'); }
+function settingsHTML(){ return `<div class="set-grp">Account</div>
+  <div class="set-card"><div class="set-row"><span class="set-avatar">DU</span><div class="sm"><b>Demo User</b><span>Lead Inspector · demouser@asite.com</span></div></div></div>
+  <div class="set-grp">Appearance</div>
+  <div class="set-card"><div class="set-row"><span class="si"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></svg></span><div class="sm"><b>Dark mode</b><span>Light theme is active</span></div><button class="wf-tog" onclick="this.classList.toggle('on')"></button></div></div>
+  <div class="set-grp">Defect capture</div>
+  <div class="set-card"><div class="set-row"><span class="si"><svg viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 1 2-2h2l1.5-2h7L19 6h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="13" cy="12.5" r="3.2"/></svg></span><div class="sm"><b>Live AI Capture</b><span>Runs the simulated demo flow with a canned photo and mock analysis.</span></div><button class="wf-tog on" onclick="this.classList.toggle('on')"></button></div></div>
+  <div class="set-grp">Asite Intelligence</div>
+  <div class="set-card"><div class="set-row"><span class="si">${SPARK}</span><div class="sm"><b>Auto-draft Site Diary</b><span>Let Intelligence compile the daily diary for review.</span></div><button class="wf-tog on" onclick="this.classList.toggle('on')"></button></div>
+  <div class="set-row"><span class="si">${SPARK}</span><div class="sm"><b>Site Copilot</b><span>Tap the spark orb on any plan to open Copilot.</span></div><span class="chip"><span class="d dot-done"></span>Enabled</span></div></div>`;
+}
+
 document.addEventListener('click', function(e){
   const lp=document.getElementById('levPop');
   if(lp && lp.classList.contains('on') && !e.target.closest('#levPop') && !e.target.closest('#levBtn')) lp.classList.remove('on');
   if(!e.target.closest('.fdrop')) document.querySelectorAll('.fmenu').forEach(m=>m.classList.remove('on'));
   if(!e.target.closest('#raiseMenu') && !e.target.closest('.fab-raise')) hideRaise();
+  if(!e.target.closest('#kebabMenu') && !e.target.closest('.kebab')) hideKebab();
 });
 genDefects();
 renderSite();
