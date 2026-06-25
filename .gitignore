@@ -1,0 +1,6 @@
+# Ignore prototype images folder
+Prototype images/
+
+# Ignore screen recording videos
+screen_recording*
+*.screen_recording
