@@ -425,7 +425,7 @@ button{font-family:inherit}
 
 /* summoned defect drawer (2D) */
 .defdrawer{position:absolute; top:0; right:0; bottom:0; width:358px; background:var(--bg-1); border-left:1px solid var(--border); box-shadow:var(--shadow-pop); transform:translateX(100%); transition:transform var(--t-base) var(--ease); z-index:12; display:flex; flex-direction:column}
-.view2d.drawer-on .defdrawer{transform:none}
+.console.drawer-on .defdrawer{transform:none}
 .dd-head{display:flex; align-items:center; gap:10px; padding:14px 16px; border-bottom:1px solid var(--border); flex-shrink:0}
 .dd-head .dd-k{font:600 9.5px/1.3 var(--font-ui); letter-spacing:.12em; text-transform:uppercase; color:var(--text-3)}
 .dd-head .dd-ref{font:560 14px/1.2 var(--font-ui); margin-top:3px}
@@ -465,8 +465,30 @@ select.dd-input{cursor:pointer; -webkit-appearance:none; appearance:none; backgr
 .btn-resolve{background:var(--st-done); color:#fff}
 .btn-resolve:hover{background:#268a59}
 .pinmark.coords{font-family:var(--font-mono); letter-spacing:.02em}
-/* AI blob shifts left of the open drawer in 2D */
-.console.drawer-open .ai-blob{right:378px}
+/* AI blob shifts left of the open drawer */
+.console.drawer-on .ai-blob{right:378px}
+
+/* ===== 3D + 360 plan views ===== */
+.view3d,.view360{position:absolute; inset:0; display:none}
+.view3d.show,.view360.show{display:block}
+.iso-wrap{position:absolute; inset:0; background:var(--bg-2); display:grid; place-items:center; overflow:hidden; padding:30px}
+.iso{position:relative; width:100%; max-width:700px; aspect-ratio:600/400}
+.iso .isoplan{position:absolute; inset:0; width:100%; height:100%}
+.iso-ctrls{position:absolute; right:18px; top:14px; z-index:3; background:var(--bg-1); border-radius:var(--r-md); box-shadow:var(--inset),var(--shadow-card); padding:12px}
+.ic-h{font:600 9.5px/1.4 var(--font-ui); letter-spacing:.1em; text-transform:uppercase; color:var(--text-3); margin-bottom:9px}
+.ic-grid{display:grid; grid-template-columns:repeat(3,32px); grid-auto-rows:32px; gap:4px}
+.ic-grid button{border:0; background:var(--bg-2); box-shadow:var(--inset); border-radius:7px; cursor:pointer; color:var(--text-2); font:500 14px/1 var(--font-ui)}
+.ic-grid button:hover{background:var(--bg-3); color:var(--text-1)}
+.ic-up{grid-column:2; grid-row:1} .ic-left{grid-column:1; grid-row:2} .ic-reset{grid-column:2; grid-row:2; color:var(--intent)} .ic-right{grid-column:3; grid-row:2} .ic-down{grid-column:2; grid-row:3}
+.pano-vp{position:absolute; inset:0; overflow:hidden; cursor:grab; background:#10141a; touch-action:none}
+.pano-vp:active{cursor:grabbing}
+.pano{position:absolute; top:0; left:0; height:100%; width:220%}
+.pano-img{position:absolute; inset:0; background:
+  linear-gradient(180deg,#23282f 0 20%, #3c424b 20% 30%, #4a515b 30% 68%, #2b3037 68% 72%, #1c2026 72% 100%),
+  repeating-linear-gradient(90deg, transparent 0 158px, rgba(255,255,255,.045) 158px 162px),
+  repeating-linear-gradient(90deg, transparent 0 470px, rgba(255,255,255,.06) 470px 540px)}
+.pano-hint{position:absolute; bottom:18px; left:50%; transform:translateX(-50%); z-index:3; display:flex; align-items:center; gap:8px; background:rgba(12,14,18,.55); color:#fff; padding:8px 14px; border-radius:99px; font:500 12px/1 var(--font-ui)}
+.pano-hint svg{width:15px; height:15px}
 
 /* FABs */
 .fabs-l{position:absolute; left:18px; bottom:18px; display:flex; flex-direction:column; gap:9px; z-index:9}
@@ -1001,26 +1023,44 @@ select.dd-input{cursor:pointer; -webkit-appearance:none; appearance:none; backgr
             <div class="plan-zoom"><button title="Zoom in">+</button><button title="Zoom out">−</button></div>
           </div>
 
-          <!-- summoned defect drawer — content rendered by renderDrawer() -->
-          <aside class="defdrawer" id="defDrawer"></aside>
         </div>
       </div>
-      <div class="viewstub" id="stub3d">
-        <div class="stub-card">
-          <div class="stub-ic"><svg viewBox="0 0 24 24"><path d="M12 3 4 7v10l8 4 8-4V7l-8-4zM4 7l8 4 8-4M12 11v10"/></svg></div>
-          <h3>3D model view</h3>
-          <p>Navigate the room model with pins in place; tap a marker to open the defect in context.</p>
-          <span class="stub-tag">Next build</span>
+
+      <!-- 3D model view -->
+      <div class="view3d" id="stub3d">
+        <div class="iso-wrap">
+          <div class="iso" id="iso3d">
+            <svg class="isoplan" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid meet">
+              <path d="M300 86 L540 206 L300 326 L60 206 Z" fill="rgba(22,24,28,.035)" stroke="rgba(22,24,28,.28)" stroke-width="2" stroke-linejoin="round"/>
+              <g fill="none" stroke="rgba(22,24,28,.22)" stroke-width="1.5">
+                <path d="M180 146 L420 266 M300 86 L300 206 M180 266 L300 206 L420 146"/>
+              </g>
+              <g fill="none" stroke="rgba(22,24,28,.34)" stroke-width="2" stroke-linejoin="round">
+                <path d="M60 206 L60 168 L300 48 L300 86"/><path d="M300 48 L540 168 L540 206"/>
+                <path d="M300 48 L300 86"/>
+              </g>
+              <text x="300" y="212" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="rgba(22,24,28,.42)">Admin Office &amp; Admin</text>
+            </svg>
+          </div>
+        </div>
+        <div class="iso-ctrls">
+          <div class="ic-h">Model controls</div>
+          <div class="ic-grid">
+            <button class="ic-up">↑</button><button class="ic-left">←</button><button class="ic-reset">⟳</button><button class="ic-right">→</button><button class="ic-down">↓</button>
+          </div>
         </div>
       </div>
-      <div class="viewstub" id="stub360">
-        <div class="stub-card">
-          <div class="stub-ic"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="9" ry="4.5"/><path d="M5 12c0 3 3.1 5.5 7 5.5M19 12c0-3-3.1-5.5-7-5.5"/></svg></div>
-          <h3>360° walkthrough</h3>
-          <p>Step through panoramic captures of each space and pin issues where you stand.</p>
-          <span class="stub-tag">Next build</span>
+
+      <!-- 360 walkthrough -->
+      <div class="view360" id="stub360">
+        <div class="pano-vp" id="panoVp">
+          <div class="pano" id="pano360"><div class="pano-img"></div></div>
         </div>
+        <div class="pano-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M8 7 4 11l4 4M16 7l4 4-4 4M4 11h16"/></svg> Drag to look around</div>
       </div>
+
+      <!-- summoned defect drawer — works across 2D / 3D / 360 -->
+      <aside class="defdrawer" id="defDrawer"></aside>
 
       <!-- floating view toggle (per room/space plan) -->
       <div class="plan-toggle" id="planToggle">
@@ -1192,7 +1232,9 @@ function setView(v){ /* plan sub-modes: '2d' | '3d' | '360' */
   document.getElementById('stub3d').classList.toggle('show', v==='3d');
   document.getElementById('stub360').classList.toggle('show', v==='360');
   if(v==='2d') renderTwoD();
-  if(v!=='2d'){ cancelPlace(); closeDrawer(); }
+  else if(v==='3d') render3D();
+  else if(v==='360') render360();
+  if(v!=='2d') cancelPlace();
   closeAI();
 }
 function goHome(){
@@ -1363,12 +1405,32 @@ function renderPins(){
     pi.appendChild(b);
   });
 }
-function openDrawerShell(){ document.getElementById('view2d').classList.add('drawer-on'); document.querySelector('.console').classList.add('drawer-open'); }
-function openDef(d){ drawerPin=d; drawerMode='view'; renderPins(); renderDrawer(); openDrawerShell(); }
+function openDrawerShell(){ document.querySelector('.console').classList.add('drawer-on'); }
+function openDef(d){ drawerPin=d; drawerMode='view'; refreshPins(); renderDrawer(); openDrawerShell(); }
 function closeDrawer(){
-  document.getElementById('view2d').classList.remove('drawer-on');
-  document.querySelector('.console').classList.remove('drawer-open');
-  drawerPin=null; draft=null; drawerMode='view'; renderPins();
+  document.querySelector('.console').classList.remove('drawer-on');
+  drawerPin=null; draft=null; drawerMode='view'; refreshPins();
+}
+function refreshPins(){ if(curView==='3d') render3D(); else if(curView==='360') render360(); else renderTwoD(); }
+function render3D(){
+  const c=document.getElementById('iso3d'); if(!c||!sLevel) return;
+  c.querySelectorAll('.pin').forEach(e=>e.remove());
+  DEFECTS.filter(d=>d.l===sLevel).forEach(d=>{
+    const L=Math.max(7,Math.min(93, 50+((d.x-50)-(d.y-50))*0.52));
+    const T=Math.max(10,Math.min(86, 45+((d.x-50)+(d.y-50))*0.34));
+    const b=document.createElement('button'); b.className='pin '+pinCls(d)+(d===drawerPin?' sel':'');
+    b.style.left=L+'%'; b.style.top=T+'%'; b.innerHTML=`<span class="mk"><span>${pinGly(d)}</span></span>`;
+    b.addEventListener('click',()=>openDef(d)); c.appendChild(b);
+  });
+}
+function render360(){
+  const c=document.getElementById('pano360'); if(!c||!sLevel) return;
+  c.querySelectorAll('.pin').forEach(e=>e.remove());
+  DEFECTS.filter(d=>d.l===sLevel).forEach(d=>{
+    const b=document.createElement('button'); b.className='pin '+pinCls(d)+(d===drawerPin?' sel':'');
+    b.style.left=Math.min(96,d.x+2)+'%'; b.style.top=(30+d.y*0.4)+'%'; b.innerHTML=`<span class="mk"><span>${pinGly(d)}</span></span>`;
+    b.addEventListener('click',()=>openDef(d)); c.appendChild(b);
+  });
 }
 const locPath=room=>`${sProj?sProj.name:''} › ${sBldg?sBldg.name:''} › ${sLevel?sLevel.name:''} › ${room}`;
 const sevSelect=(id,v)=>`<select class="dd-input" id="${id}">${['Critical','High','Medium','Low'].map(o=>`<option${o===v?' selected':''}>${o}</option>`).join('')}</select>`;
@@ -1421,9 +1483,9 @@ function addImg(t){ const o=curObj(); captureInputs(o); if(o.images.length<4) o.
 function removeImg(idx){ const o=curObj(); captureInputs(o); o.images.splice(idx,1); renderDrawer(); }
 function editDefect(){ drawerMode='edit'; renderDrawer(); }
 function cancelEdit(){ drawerMode='view'; renderDrawer(); }
-function saveEdit(){ captureInputs(drawerPin); drawerPin.hist.push({t:'Defect updated',w:'You',d:'just now'}); drawerMode='view'; renderPins(); renderDrawer(); }
-function resolveDefect(){ drawerPin.status='Resolved'; drawerPin.hist.push({t:'Marked Resolved',w:'You',d:'just now'}); renderPins(); renderDrawer(); }
-function reopenDefect(){ drawerPin.status='Open'; drawerPin.hist.push({t:'Re-opened',w:'You',d:'just now'}); renderPins(); renderDrawer(); }
+function saveEdit(){ captureInputs(drawerPin); drawerPin.hist.push({t:'Defect updated',w:'You',d:'just now'}); drawerMode='view'; refreshPins(); renderDrawer(); }
+function resolveDefect(){ drawerPin.status='Resolved'; drawerPin.hist.push({t:'Marked Resolved',w:'You',d:'just now'}); refreshPins(); renderDrawer(); }
+function reopenDefect(){ drawerPin.status='Open'; drawerPin.hist.push({t:'Re-opened',w:'You',d:'just now'}); refreshPins(); renderDrawer(); }
 function startCreate(x,y){
   const r0=(sLevel&&sLevel.children&&sLevel.children[0])?sLevel.children[0]:null;
   draft={x:+x,y:+y,images:[],title:'',sev:'High',desc:'',asg:'',due:'',wp:'',tt:'Defect',status:'Open',
@@ -1434,7 +1496,7 @@ function logDefect(){
   captureInputs(draft); if(!draft.title) draft.title='New defect'; if(!draft.images.length) draft.images=['crack'];
   draft.id='DEF-'+(planSeq++); draft.status='Open'; draft.sevcls=SEVCLS[draft.sev]; draft.fav=false; draft.createdBy='You';
   draft.hist=[{t:'Defect logged',w:'You',d:'just now'}];
-  DEFECTS.push(draft); drawerPin=draft; draft=null; drawerMode='view'; renderPins(); renderDrawer();
+  DEFECTS.push(draft); drawerPin=draft; draft=null; drawerMode='view'; refreshPins(); renderDrawer();
 }
 var placing=false;
 function startPlace(){ setView('2d'); placing=true; document.getElementById('placebar').style.display='flex'; document.getElementById('planInner').classList.add('placing'); }
@@ -1481,7 +1543,7 @@ function capSubmit(){
       desc:d.desc, images:[d.img], x:22+((planSeq*29)%52), y:26+((planSeq*41)%50), room:r0?r0.name:(sLevel?sLevel.name:'Room'),
       hist:[{t:'Logged via Smart Capture',w:'You',d:'just now'}], p:sProj,b:sBldg,l:sLevel,r:r0});
   });
-  closeCapture(); setView('2d'); renderPins();
+  closeCapture(); setView('2d'); refreshPins();
 }
 let splashTimer=null;
 function go(id){
@@ -1514,6 +1576,17 @@ window.addEventListener('resize',fit);
 document.querySelectorAll('.ai-orb').forEach(function(o){
   o.addEventListener('click', function(e){ e.stopPropagation(); o.parentElement.classList.toggle('open'); });
 });
+// 360 panorama drag-to-pan
+(function(){
+  const vp=document.getElementById('panoVp'), pano=document.getElementById('pano360');
+  if(!vp||!pano) return;
+  let drag=false, startX=0, cur=0;
+  function clamp(){ const max=pano.offsetWidth-vp.offsetWidth; if(cur>0)cur=0; if(cur<-max)cur=-max; pano.style.transform='translateX('+cur+'px)'; }
+  vp.addEventListener('pointerdown',e=>{ drag=true; startX=e.clientX-cur; try{vp.setPointerCapture(e.pointerId);}catch(_){} });
+  vp.addEventListener('pointermove',e=>{ if(drag){ cur=e.clientX-startX; clamp(); } });
+  vp.addEventListener('pointerup',()=>drag=false);
+  vp.addEventListener('pointercancel',()=>drag=false);
+})();
 // place-pin on the 2D plan
 (function(){
   var pi=document.getElementById('planInner');
