@@ -104,7 +104,7 @@ button{font-family:inherit}
 .auth-wm{display:flex; flex-direction:column; line-height:1}
 .auth-wm b{font:600 19px/1 var(--font-ui); letter-spacing:-.01em; color:var(--text-1)}
 .auth-wm span{font:500 9.5px/1 var(--font-ui); letter-spacing:.15em; text-transform:uppercase; color:var(--text-3); margin-top:6px}
-.auth-tag{font:400 12.5px/1.45 var(--font-ui); color:var(--text-2); text-align:center; max-width:330px; margin-bottom:16px}
+.auth-tag{font:400 12.5px/1.45 var(--font-ui); color:var(--text-2); margin:0 0 16px; padding-bottom:16px; border-bottom:1px solid var(--border)}
 .auth-card{width:100%; background:var(--bg-1); border-radius:var(--r-xl); box-shadow:var(--inset),var(--shadow-card); padding:24px 28px 26px}
 .auth-card h1{font:590 22px/1.2 var(--font-ui); letter-spacing:-.018em}
 .auth-card .lede{font:400 13.5px/1.5 var(--font-ui); color:var(--text-2); margin-top:6px}
@@ -253,8 +253,8 @@ button{font-family:inherit}
 .askbar .send svg{width:16px; height:16px; stroke:currentColor; stroke-width:1.8; fill:none; stroke-linecap:round; stroke-linejoin:round}
 
 /* ===== APP CONSOLE ===== */
-#app{background:var(--bg-3); display:flex; flex-direction:column}
-.appbar{height:84px; flex-shrink:0; display:flex; align-items:center; gap:14px; padding:30px 16px 0 18px; background:var(--bg-1); border-bottom:1px solid var(--border); position:relative; z-index:8}
+#app{background:var(--aurora), var(--bg-3); display:flex; flex-direction:column}
+.appbar{height:84px; flex-shrink:0; display:flex; align-items:center; gap:14px; padding:30px 16px 0 18px; background:transparent; position:relative; z-index:8}
 .crumb{display:flex; align-items:center; gap:7px; font:500 13px/1 var(--font-ui); color:var(--text-2); min-width:0; white-space:nowrap; overflow:hidden}
 .crumb>svg{width:17px; height:17px; stroke:currentColor; stroke-width:1.5; fill:none; flex-shrink:0; color:var(--text-3)}
 .crumb .sep{color:var(--text-3); opacity:.7}
@@ -283,7 +283,6 @@ button{font-family:inherit}
 .deck-label{font:600 10px/1.4 var(--font-ui); letter-spacing:.13em; text-transform:uppercase; color:var(--text-3); display:flex; align-items:center; gap:8px}
 .deck-label .d{width:6px; height:6px; border-radius:50%; background:var(--intent)}
 .deck-wrap{flex:1; overflow-y:auto; position:relative}
-.deck-wrap::before{content:''; position:absolute; inset:0 0 auto 0; height:150px; background:var(--aurora); pointer-events:none}
 .deck-grid{position:relative; padding:6px 22px 96px; display:grid; grid-template-columns:repeat(3,1fr); gap:16px; align-content:start}
 .lcard{position:relative; background:var(--bg-1); border-radius:var(--r-xl); box-shadow:var(--inset),var(--shadow-card); padding:18px; min-height:190px; display:flex; flex-direction:column; cursor:pointer; overflow:hidden; text-align:left; border:0; transition:box-shadow var(--t-base),transform var(--t-fast)}
 .lcard:hover{box-shadow:var(--inset),0 14px 38px rgba(22,24,28,.13); transform:translateY(-2px)}
@@ -605,6 +604,94 @@ select.dd-input{cursor:pointer; -webkit-appearance:none; appearance:none; backgr
 .dv-empty{padding:60px; text-align:center; color:var(--text-3); font:400 13px/1.6 var(--font-ui)}
 .dot-backlog{background:var(--st-backlog)}
 
+/* floating view toggle on the plan (per room/space) */
+.plan-toggle{position:absolute; top:14px; left:50%; transform:translateX(-50%); z-index:9; display:none; gap:2px; background:var(--bg-1); box-shadow:var(--inset),var(--shadow-card); border-radius:10px; padding:3px}
+.plan-toggle .vseg.on{background:var(--intent-wash); color:var(--intent)}
+.plan-toggle .vseg.on::after{display:none}
+
+/* ===== Raise FAB menu ===== */
+.raise-menu{position:absolute; left:18px; bottom:108px; z-index:11; background:var(--bg-1); border-radius:var(--r-md); box-shadow:var(--inset),var(--shadow-pop); padding:6px; display:none; min-width:212px}
+.raise-menu.on{display:block}
+.rm-item{display:flex; align-items:center; gap:11px; width:100%; border:0; background:transparent; cursor:pointer; padding:11px 12px; border-radius:var(--r-sm); text-align:left}
+.rm-item:hover{background:var(--bg-2)}
+.rm-item .ic{width:32px; height:32px; border-radius:9px; flex-shrink:0; display:grid; place-items:center; background:var(--bg-2); box-shadow:var(--inset); color:var(--text-2)}
+.rm-item .ic svg{width:17px; height:17px; stroke:currentColor; stroke-width:1.6; fill:none; stroke-linecap:round; stroke-linejoin:round}
+.rm-item .ic .spark{width:16px; height:16px}
+.rm-item .ic .spark path{fill:var(--intent)}
+.rm-item b{font:560 13px/1.2 var(--font-ui); display:block}
+.rm-item span{font:400 11px/1.3 var(--font-ui); color:var(--text-3)}
+
+/* ===== SMART CAPTURE ===== */
+.capview{position:absolute; inset:0; z-index:22; display:none}
+.capview.on{display:block}
+.cap-cam{position:absolute; inset:0; background:#0C0E12; overflow:hidden; display:grid; place-items:center}
+.cap-scene{position:absolute; inset:0; display:grid; place-items:center}
+.cap-scene svg{width:128%; height:128%}
+.cap-head{position:absolute; top:0; left:0; right:0; z-index:4; display:flex; align-items:center; gap:12px; padding:16px 20px; background:linear-gradient(180deg,rgba(8,9,10,.65),transparent)}
+.cap-lv{display:inline-flex; align-items:center; gap:6px; font:600 10px/1 var(--font-ui); letter-spacing:.12em; color:#fff}
+.cap-lv .d{width:7px; height:7px; border-radius:50%; background:var(--intent-bright); box-shadow:0 0 7px var(--intent-bright)}
+.cap-ct{flex:1; color:#fff}
+.cap-ct b{font:560 14px/1.2 var(--font-ui); display:block}
+.cap-ct span{font:400 11.5px/1.3 var(--font-ui); color:rgba(255,255,255,.62)}
+.cap-x{width:34px; height:34px; border-radius:50%; display:grid; place-items:center; background:rgba(255,255,255,.16); color:#fff; border:0; cursor:pointer; flex-shrink:0}
+.cap-x svg{width:18px; height:18px; stroke:currentColor; stroke-width:1.8; fill:none}
+.reticle{position:relative; z-index:2; width:128px; height:128px; border:2px solid var(--intent-bright); border-radius:12px; box-shadow:0 0 0 4000px rgba(8,9,10,.28)}
+.reticle i{position:absolute; width:16px; height:16px; border:2.5px solid #fff}
+.reticle i:nth-child(1){top:-2px; left:-2px; border-right:0; border-bottom:0; border-radius:4px 0 0 0}
+.reticle i:nth-child(2){top:-2px; right:-2px; border-left:0; border-bottom:0; border-radius:0 4px 0 0}
+.reticle i:nth-child(3){bottom:-2px; left:-2px; border-right:0; border-top:0; border-radius:0 0 0 4px}
+.reticle i:nth-child(4){bottom:-2px; right:-2px; border-left:0; border-top:0; border-radius:0 0 4px 0}
+.cap-bar{position:absolute; bottom:0; left:0; right:0; z-index:4; display:flex; flex-direction:column; align-items:center; gap:16px; padding:18px 20px 26px; background:linear-gradient(0deg,rgba(8,9,10,.62),transparent)}
+.cap-burst{display:flex; gap:6px}
+.cap-burst button{border:0; cursor:pointer; background:rgba(255,255,255,.15); color:#fff; font:600 11px/1 var(--font-ui); padding:7px 12px; border-radius:99px}
+.cap-burst button.on{background:#fff; color:#16181C}
+.cap-controls{display:flex; align-items:center; gap:48px}
+.cap-ic{width:46px; height:46px; border-radius:50%; display:grid; place-items:center; background:rgba(255,255,255,.15); color:#fff; border:0; cursor:pointer}
+.cap-ic svg{width:20px; height:20px; stroke:currentColor; stroke-width:1.7; fill:none; stroke-linecap:round; stroke-linejoin:round}
+.shutter{width:66px; height:66px; border-radius:50%; background:#fff; border:0; cursor:pointer; box-shadow:0 0 0 4px rgba(255,255,255,.35)}
+.shutter:active{transform:scale(.94)}
+/* analyzing */
+.cap-analyze{position:absolute; inset:0; z-index:6; display:none; place-items:center; background:rgba(8,9,10,.45)}
+.capview.analyzing .cap-analyze{display:grid}
+.ana-card{width:300px; background:var(--bg-1); border-radius:var(--r-lg); box-shadow:var(--shadow-pop); padding:18px}
+.ana-h{display:flex; align-items:center; gap:9px; font:560 13px/1 var(--font-ui)}
+.ana-h .spark{width:15px; height:15px} .ana-h .spark path{fill:var(--intent)}
+.ana-wave{display:flex; align-items:flex-end; gap:3px; height:22px; margin:15px 0 12px}
+.ana-wave i{width:3px; background:var(--intent); border-radius:2px; animation:wv 1s var(--ease) infinite}
+.ana-bar{height:5px; border-radius:99px; background:var(--bg-3); box-shadow:var(--inset); overflow:hidden}
+.ana-bar i{display:block; height:100%; width:8%; background:linear-gradient(90deg,var(--intent),var(--intent-bright)); border-radius:99px; animation:anaload 1.5s var(--ease) forwards}
+@keyframes anaload{to{width:100%}}
+.ana-card p{font:400 12px/1.5 var(--font-ui); color:var(--text-2); margin-top:11px}
+/* review */
+.cap-review{position:absolute; inset:0; z-index:5; display:none; background:var(--bg-3); flex-direction:column}
+.capview.reviewing .cap-review{display:flex}
+.cr-head{display:flex; align-items:center; gap:12px; padding:16px 26px; background:var(--bg-1); border-bottom:1px solid var(--border); flex-shrink:0}
+.cr-ico{width:34px; height:34px; border-radius:10px; display:grid; place-items:center; background:var(--bg-2); box-shadow:var(--inset)}
+.cr-ico .spark{width:18px; height:18px} .cr-ico .spark path{fill:var(--intent)}
+.cr-head .ct b{font:560 15px/1.2 var(--font-ui); display:block}
+.cr-head .ct span{font:400 11.5px/1.3 var(--font-ui); color:var(--text-3)}
+.cr-body{flex:1; overflow:auto; padding:20px 26px 24px; display:grid; grid-template-columns:1.25fr 1fr; gap:22px; align-content:start}
+.cr-col h5{font:600 10px/1.4 var(--font-ui); letter-spacing:.1em; text-transform:uppercase; color:var(--text-3); margin-bottom:11px}
+.dcd{display:flex; gap:12px; padding:13px; background:var(--bg-1); border-radius:var(--r-md); box-shadow:var(--inset); margin-bottom:9px; cursor:pointer}
+.dcd.off{opacity:.5}
+.dcd .dchk{margin-top:2px}
+.dcd.sel .dchk{background:var(--intent); box-shadow:none}
+.dcd.sel .dchk svg{opacity:1}
+.dcd-im{width:52px; height:42px; border-radius:7px; overflow:hidden; box-shadow:var(--inset); flex-shrink:0}
+.dcd-im svg{width:100%; height:100%; display:block}
+.dcd .b{flex:1; min-width:0}
+.dcd .b b{font:560 13px/1.3 var(--font-ui); display:block}
+.dcd .b .tr{font:400 11px/1.3 var(--font-ui); color:var(--text-3); margin-top:2px}
+.dcd .b .ds{font:400 11.5px/1.4 var(--font-ui); color:var(--text-2); margin-top:6px}
+.dcd .b .sv{margin-top:8px}
+.cr-opt{display:flex; gap:9px; margin-bottom:16px}
+.optc{flex:1; border:0; cursor:pointer; text-align:left; background:var(--bg-1); box-shadow:var(--inset); border-radius:var(--r-md); padding:12px}
+.optc.on{box-shadow:inset 0 0 0 1px var(--intent); background:var(--intent-wash)}
+.optc b{font:560 12.5px/1.2 var(--font-ui); display:block}
+.optc span{font:400 10.5px/1.3 var(--font-ui); color:var(--text-3); margin-top:3px; display:block}
+.cr-foot{display:flex; gap:10px; padding:14px 26px; background:var(--bg-1); border-top:1px solid var(--border); flex-shrink:0}
+.cr-foot .grow{flex:1}
+
 /* ---- harness ---- */
 .harness{display:flex; align-items:center; gap:14px; z-index:5}
 .hdots{display:flex; gap:9px; background:rgba(255,255,255,.55); padding:9px 14px; border-radius:99px; box-shadow:0 2px 10px rgba(22,24,28,.10), inset 0 0 0 1px rgba(22,24,28,.05); backdrop-filter:blur(6px)}
@@ -655,20 +742,15 @@ select.dd-input{cursor:pointer; -webkit-appearance:none; appearance:none; backgr
   <!-- ============ SIGN IN (centered card · light) ============ -->
   <section class="screen" id="signin">
     <div class="ember"></div>
-    <div class="auth-variants">
-      <button class="vbtn on" data-v="minimal" onclick="setVariant('minimal')">Minimal</button>
-      <button class="vbtn" data-v="ember" onclick="setVariant('ember')">Ember</button>
-    </div>
     <div class="auth rise">
-      <div class="auth-brand">
-        <div class="auth-orb"><div class="glow"></div>
-          <svg class="spark" width="22" height="22" viewBox="0 0 24 24"><path d="M12 1.5c.4 4.9 1.6 6.1 6.5 6.5 1.6.13 1.6 2.37 0 2.5-4.9.4-6.1 1.6-6.5 6.5-.13 1.6-2.37 1.6-2.5 0-.4-4.9-1.6-6.1-6.5-6.5-1.6-.13-1.6-2.37 0-2.5 4.9-.4 6.1-1.6 6.5-6.5.13-1.6 2.37-1.6 2.5 0z"/></svg>
-        </div>
-        <div class="auth-wm"><b>iField</b><span>Field operations</span></div>
-      </div>
-      <div class="auth-tag">Capture, navigate and resolve site defects — with AI in the field.</div>
-
       <div class="auth-card">
+        <div class="auth-brand">
+          <div class="auth-orb"><div class="glow"></div>
+            <svg class="spark" width="22" height="22" viewBox="0 0 24 24"><path d="M12 1.5c.4 4.9 1.6 6.1 6.5 6.5 1.6.13 1.6 2.37 0 2.5-4.9.4-6.1 1.6-6.5 6.5-.13 1.6-2.37 1.6-2.5 0-.4-4.9-1.6-6.1-6.5-6.5-1.6-.13-1.6-2.37 0-2.5 4.9-.4 6.1-1.6 6.5-6.5.13-1.6 2.37-1.6 2.5 0z"/></svg>
+          </div>
+          <div class="auth-wm"><b>iField</b><span>Field operations</span></div>
+        </div>
+        <div class="auth-tag">Capture, navigate and resolve site defects — with AI in the field.</div>
         <h1>Welcome back</h1>
         <div class="lede">Sign in to continue to your site workspace.</div>
         <div class="field">
@@ -850,12 +932,7 @@ select.dd-input{cursor:pointer; -webkit-appearance:none; appearance:none; backgr
   <section class="screen" id="app">
     <div class="appbar">
       <div class="crumb" id="appCrumb"></div>
-      <div class="viewtoggle">
-        <button class="vseg on" data-view="site" onclick="setView('site')"><svg viewBox="0 0 24 24"><path d="M3 5h7v7H3zM14 5h7v4h-7zM14 12h7v7h-7zM3 15h7v4H3z"/></svg> Site</button>
-        <button class="vseg" data-view="2d" onclick="setView('2d')"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M3 11h6"/></svg> 2D</button>
-        <button class="vseg" data-view="3d" onclick="setView('3d')"><svg viewBox="0 0 24 24"><path d="M12 3 4 7v10l8 4 8-4V7l-8-4zM4 7l8 4 8-4M12 11v10"/></svg> 3D</button>
-        <button class="vseg" data-view="360" onclick="setView('360')"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="9" ry="4.5"/><path d="M5 12c0 3 3.1 5.5 7 5.5M19 12c0-3-3.1-5.5-7-5.5"/></svg> 360</button>
-      </div>
+      <span style="margin-left:auto"></span>
       <div class="kebab"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="12" cy="5" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="19" r="1.6"/></svg></div>
     </div>
 
@@ -945,9 +1022,20 @@ select.dd-input{cursor:pointer; -webkit-appearance:none; appearance:none; backgr
         </div>
       </div>
 
+      <!-- floating view toggle (per room/space plan) -->
+      <div class="plan-toggle" id="planToggle">
+        <button class="vseg on" data-view="2d" onclick="setView('2d')"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M3 11h6"/></svg> 2D</button>
+        <button class="vseg" data-view="3d" onclick="setView('3d')"><svg viewBox="0 0 24 24"><path d="M12 3 4 7v10l8 4 8-4V7l-8-4zM4 7l8 4 8-4M12 11v10"/></svg> 3D</button>
+        <button class="vseg" data-view="360" onclick="setView('360')"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="9" ry="4.5"/><path d="M5 12c0 3 3.1 5.5 7 5.5M19 12c0-3-3.1-5.5-7-5.5"/></svg> 360</button>
+      </div>
+
       <!-- FABs -->
+      <div class="raise-menu" id="raiseMenu">
+        <button class="rm-item" onclick="hideRaise();openCapture()"><span class="ic"><svg class="spark" viewBox="0 0 24 24"><path d="M12 1.5c.4 4.9 1.6 6.1 6.5 6.5 1.6.13 1.6 2.37 0 2.5-4.9.4-6.1 1.6-6.5 6.5-.13 1.6-2.37 1.6-2.5 0-.4-4.9-1.6-6.1-6.5-6.5-1.6-.13-1.6-2.37 0-2.5 4.9-.4 6.1-1.6 6.5-6.5.13-1.6 2.37-1.6 2.5 0z"/></svg></span><span><b>Smart Capture</b><span>Photo → AI inspects → log</span></span></button>
+        <button class="rm-item" onclick="hideRaise();startPlace()"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span><b>Place pin manually</b><span>Tap the plan to pin a defect</span></span></button>
+      </div>
       <div class="fabs-l">
-        <button class="fab-pill fab-raise" onclick="startPlace()"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg> Raise</button>
+        <button class="fab-pill fab-raise" onclick="toggleRaise(event)"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg> Raise</button>
         <button class="fab-pill fab-def" onclick="openDefects()"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg> Defects</button>
       </div>
       <!-- Asite Intelligence blob (canonical — screens.html) -->
@@ -1013,6 +1101,65 @@ select.dd-input{cursor:pointer; -webkit-appearance:none; appearance:none; backgr
           <button class="bresolve"><i>✦</i> Resolve with AI</button>
         </div>
       </div>
+
+      <!-- SMART CAPTURE overlay -->
+      <div class="capview" id="captureView">
+        <div class="cap-cam">
+          <div class="cap-scene" id="capScene"></div>
+          <div class="cap-head">
+            <span class="cap-lv"><span class="d"></span>LIVE</span>
+            <div class="cap-ct"><b>Smart Defect Capture</b><span>Capture and let AI inspect</span></div>
+            <button class="cap-x" onclick="closeCapture()"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+          </div>
+          <div class="reticle"><i></i><i></i><i></i><i></i></div>
+          <div class="cap-bar">
+            <div class="cap-burst"><button class="on">1×</button><button>3×</button><button>5×</button><button>HDR</button></div>
+            <div class="cap-controls">
+              <button class="cap-ic" title="Gallery"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m3 16 5-5 4 4 3-3 6 6"/><circle cx="8.5" cy="8.5" r="1.5"/></svg></button>
+              <button class="shutter" onclick="capShoot()"></button>
+              <button class="cap-ic" title="Flip"><svg viewBox="0 0 24 24"><path d="M3 7h13l-2-2M21 17H8l2 2"/><circle cx="12" cy="12" r="3"/></svg></button>
+            </div>
+          </div>
+          <div class="cap-analyze">
+            <div class="ana-card">
+              <div class="ana-h"><svg class="spark" viewBox="0 0 24 24"><path d="M12 1.5c.4 4.9 1.6 6.1 6.5 6.5 1.6.13 1.6 2.37 0 2.5-4.9.4-6.1 1.6-6.5 6.5-.13 1.6-2.37 1.6-2.5 0-.4-4.9-1.6-6.1-6.5-6.5-1.6-.13-1.6-2.37 0-2.5 4.9-.4 6.1-1.6 6.5-6.5.13-1.6 2.37-1.6 2.5 0z"/></svg> Analyzing image + voice</div>
+              <div class="ana-wave"><i style="animation-delay:0s"></i><i style="animation-delay:.12s"></i><i style="animation-delay:.24s"></i><i style="animation-delay:.36s"></i><i style="animation-delay:.48s"></i><i style="animation-delay:.6s"></i><i style="animation-delay:.72s"></i></div>
+              <div class="ana-bar"><i></i></div>
+              <p>Asite Intelligence is detecting defects, classifying severity and drafting the log.</p>
+            </div>
+          </div>
+        </div>
+        <!-- review -->
+        <div class="cap-review">
+          <div class="cr-head">
+            <div class="cr-ico"><svg class="spark" viewBox="0 0 24 24"><path d="M12 1.5c.4 4.9 1.6 6.1 6.5 6.5 1.6.13 1.6 2.37 0 2.5-4.9.4-6.1 1.6-6.5 6.5-.13 1.6-2.37 1.6-2.5 0-.4-4.9-1.6-6.1-6.5-6.5-1.6-.13-1.6-2.37 0-2.5 4.9-.4 6.1-1.6 6.5-6.5.13-1.6 2.37-1.6 2.5 0z"/></svg></div>
+            <div class="ct"><b id="crTitle">AI detected 2 issues</b><span>Review, select, assign and submit from one screen</span></div>
+            <button class="cap-x" style="background:var(--bg-2);color:var(--text-2)" onclick="closeCapture()"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+          </div>
+          <div class="cr-body">
+            <div class="cr-col">
+              <h5>Detected defects</h5>
+              <div id="crList"></div>
+            </div>
+            <div class="cr-col">
+              <h5>Create option</h5>
+              <div class="cr-opt">
+                <button class="optc on" id="optCombined" onclick="setCrOpt('combined')"><b>One combined defect</b><span>Group issues into a single task</span></button>
+                <button class="optc" id="optMultiple" onclick="setCrOpt('multiple')"><b>Multiple defects</b><span>One task per issue</span></button>
+              </div>
+              <h5>Assignee</h5>
+              <select class="dd-input" id="crAsg" style="margin-bottom:16px"><option>Select assignee…</option><option>Electrical Team</option><option>Safety Works</option><option>Finishing Crew</option></select>
+              <h5>Location</h5>
+              <div class="dd-val loc"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span id="crLoc">—</span></div>
+            </div>
+          </div>
+          <div class="cr-foot">
+            <button class="btn btn-secondary" style="width:auto; padding:11px 18px" onclick="capBack()"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg> Retake</button>
+            <span class="grow"></span>
+            <button class="btn btn-primary" style="width:auto; padding:11px 20px" onclick="capSubmit()"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg> <span id="crSubmit">Log defect</span></button>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1028,25 +1175,34 @@ select.dd-input{cursor:pointer; -webkit-appearance:none; appearance:none; backgr
     <button data-s="s2" title="Site Map"></button>
     <button data-s="s3" title="Site Agent"></button>
     <button data-s="s1done" title="Done"></button>
-    <button data-s="app" title="Site console"></button>
+    <button data-s="app" title="Field console"></button>
   </div>
   <span class="hlabel" id="hlabel">Splash</span>
   <button class="replay" onclick="go('splash')"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9 9 0 0 0-7 3.3M4 3v4h4"/></svg> Restart</button>
 </div>
 
 <script>
-const LABELS={splash:'Splash',signin:'Sign in',s1:'AI Capture',s2:'Site Map',s3:'Site Agent',s1done:'Done',app:'Site console'};
-function setView(v){
+const LABELS={splash:'Splash',signin:'Sign in',s1:'AI Capture',s2:'Site Map',s3:'Site Agent',s1done:'Done',app:'Field console'};
+function setView(v){ /* plan sub-modes: '2d' | '3d' | '360' */
   curView=v;
-  document.querySelectorAll('.vseg').forEach(b=>b.classList.toggle('on', b.dataset.view===v));
-  document.getElementById('siteview').style.display = v==='site' ? 'block' : 'none';
+  document.getElementById('siteview').style.display='none';
+  document.getElementById('planToggle').style.display='flex';
+  document.querySelectorAll('#planToggle .vseg').forEach(b=>b.classList.toggle('on', b.dataset.view===v));
   document.getElementById('view2d').classList.toggle('show', v==='2d');
   document.getElementById('stub3d').classList.toggle('show', v==='3d');
   document.getElementById('stub360').classList.toggle('show', v==='360');
-  if(v==='site') renderSite();
-  else if(v==='2d') renderTwoD();
+  if(v==='2d') renderTwoD();
   if(v!=='2d'){ cancelPlace(); closeDrawer(); }
   closeAI();
+}
+function goHome(){
+  curView='home';
+  document.getElementById('siteview').style.display='block';
+  document.getElementById('planToggle').style.display='none';
+  document.getElementById('view2d').classList.remove('show');
+  document.getElementById('stub3d').classList.remove('show');
+  document.getElementById('stub360').classList.remove('show');
+  cancelPlace(); closeDrawer(); closeAI(); renderSite();
 }
 /* ===== Site navigator (tree drill-down + context pane) ===== */
 const TREE={id:'root',name:'All sites',children:[
@@ -1129,21 +1285,22 @@ const PINGLY={block:'!',done:'✓',open:'D',prog:'D',rev:'D'};
 const SLOTS=[{lx:27,ly:40,px:21,py:53},{lx:63,ly:26,px:63,py:33},{lx:63,ly:60,px:63,py:63},{lx:86,ly:60,px:86,py:63}];
 let sProj=null, sBldg=null, sLevel=null;
 
-let curView='site';
+let curView='home';
 function renderSite(){
   renderCrumb();
   if(!sProj) renderDeck(TREE.children,'Project','Projects');
   else renderDeck(sProj.children,'Building',sProj.name);
 }
 function renderCrumb(){
-  const inPlan = curView==='2d' && sBldg;
+  const inPlan = curView!=='home' && sBldg;
   let h=`<svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg>`;
   h+=`<button class="cb${(!sProj&&!inPlan)?' cur':''}" onclick="siteHome()">All sites</button>`;
   if(sProj) h+=`<span class="sep">›</span><button class="cb${(sProj&&!inPlan)?' cur':''}" onclick="siteToBuildings()">${sProj.name}</button>`;
   if(inPlan) h+=`<span class="sep">›</span><button class="cb cur">${sBldg.name}</button>`;
   document.getElementById('appCrumb').innerHTML=h;
 }
-const deckChips=c=>['open','prog','rev','done','block'].filter(k=>c&&c[k]).map(k=>`<span class="lchip"><span class="d ${DOTCLS[k]}"></span>${c[k]}${k==='open'?' open':''}</span>`).join('');
+const CHIP_LABEL={open:'open',prog:'in progress',rev:'in review',done:'resolved',block:'blocked'};
+const deckChips=c=>['open','prog','rev','done','block'].filter(k=>c&&c[k]).map(k=>`<span class="lchip"><span class="d ${DOTCLS[k]}"></span>${c[k]} ${CHIP_LABEL[k]}</span>`).join('');
 const THUMB={Project:'<path d="M20 100V44l28-16 28 16v56"/><path d="M8 100h130M86 100V66h22v34"/>',Building:'<rect x="14" y="16" width="98" height="86"/><path d="M63 16v86M14 60h98"/>'};
 function renderDeck(items,kind,label){
   document.getElementById('deckLabel').innerHTML=`<span class="d"></span> ${label}`;
@@ -1158,14 +1315,15 @@ function pickCard(i){
   if(!sProj){ sProj=TREE.children[i]; sBldg=null; renderSite(); }
   else { sBldg=sProj.children[i]; sLevel=sBldg.children[0]; setView('2d'); }
 }
-function siteHome(){ sProj=sBldg=sLevel=null; setView('site'); }
-function siteToBuildings(){ sBldg=null; setView('site'); }
+function siteHome(){ sProj=sBldg=sLevel=null; goHome(); }
+function siteToBuildings(){ sBldg=null; goHome(); }
 function renderTwoD(){
   if(!sBldg){ sProj=sProj||TREE.children[0]; sBldg=sProj.children[0]; sLevel=sBldg.children[0]; }
   if(!sLevel||!sBldg.children.includes(sLevel)) sLevel=sBldg.children[0];
   document.getElementById('levName').textContent=sLevel.name;
   const c=sLevel.counts||{};
-  document.getElementById('planStat').innerHTML=`<span>${sLevel.name}</span> <b>${c.open||0}</b> open · <b>${totalPins(sLevel)}</b> pins`;
+  const ld=DEFECTS.filter(d=>d.l===sLevel);
+  document.getElementById('planStat').innerHTML=`<span>${sLevel.name}</span> <b>${ld.filter(d=>d.status==='Open').length}</b> open · <b>${ld.length}</b> pins`;
   const lp=document.getElementById('levPop'); lp.classList.remove('on');
   lp.innerHTML=sBldg.children.map((l,i)=>`<button class="levitem${l===sLevel?' on':''}" onclick="pickLevel(${i})"><svg viewBox="0 0 24 24"><path d="M12 3 3 8l9 5 9-5-9-5zM3 13l9 5 9-5"/></svg>${l.name}<span class="lc">${navTotal(l.counts)}</span></button>`).join('');
   renderPins();
@@ -1188,32 +1346,25 @@ const SHOT={
 };
 const PALETTE=['socket','hinge','latch','joint','crack','leak','tile','light'];
 function shotSVG(t){ const o=SHOT[t]||SHOT.crack; return `<svg class="shot" viewBox="0 0 120 90" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="bg_${t}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${o.a}"/><stop offset="1" stop-color="${o.b}"/></linearGradient></defs><rect width="120" height="90" fill="url(#bg_${t})"/>${o.s}</svg>`; }
-let PLAN_PINS=[
-  {ref:'DEF-218',title:'Emergency Light Battery Fault',room:'Admin Office & Admin',sev:'High',status:'open',x:19,y:37,images:['light'],desc:'Emergency luminaire fails self-test; battery not holding charge.',asg:'Electrical Team',due:'2025-06-27',wp:'Electrical EL-204',tt:'NCR',hist:[{t:'Defect logged',w:'QA/QC Engineer',d:'20 Jun · 14:21'},{t:'Assigned to Electrical Team',w:'QA/QC Engineer',d:'20 Jun · 14:25'}]},
-  {ref:'DEF-221',title:'Lobby Tile Lippage',room:'Admin Office & Admin',sev:'Medium',status:'open',x:28,y:50,images:['tile'],desc:'Adjacent porcelain tiles have visible lippage near the entrance walk.',asg:'Finishing Crew',due:'2025-06-04',wp:'Finishing FL-101',tt:'Snagging',hist:[{t:'Defect logged',w:'Site Inspector',d:'04 Jun · 08:40'}]},
-  {ref:'DEF-231',title:'Exposed Electrical Wiring',room:'Admin Office & Admin',sev:'Critical',status:'open',x:23,y:62,images:['joint','socket'],desc:'Loose conductors exposed in an active walk path; isolate and contain.',asg:'Electrical Works',due:'2025-06-12',wp:'Electrical EL-204',tt:'NCR',hist:[{t:'Defect logged',w:'Site Engineer',d:'12 Jun · 07:55'},{t:'Severity raised to Critical',w:'QA/QC',d:'12 Jun · 08:10'}]},
-  {ref:'DEF-204',title:'Window Sealant Void',room:'Admin Office & Admin',sev:'Medium',status:'open',x:34,y:30,images:['crack'],desc:'Perimeter sealant missing along the north window reveal; water ingress risk.',asg:'Facade Team',due:'2025-06-28',wp:'Facade FA-330',tt:'Defect',hist:[{t:'Defect logged',w:'Site Inspector',d:'21 Jun · 09:14'}]},
-  {ref:'DEF-203',title:'Ceiling Tile Sagging',room:'Admin Office & Admin',sev:'Low',status:'done',x:36,y:66,images:['leak'],desc:'Ceiling tile sag corrected and re-seated; verified on site.',asg:'Finishing Crew',due:'2025-06-12',wp:'Finishing FL-101',tt:'Snagging',hist:[{t:'Defect logged',w:'Site Inspector',d:'05 Jun · 11:20'},{t:'Marked Resolved',w:'Finishing Crew',d:'10 Jun · 16:30'}]}
-];
 const SEV_PIN={Critical:'pin-block',High:'pin-int',Medium:'pin-rev',Low:'pin-prog'};
 const SEVCLS_VIEW={Critical:'sev-crit',High:'sev-high',Medium:'sev-med',Low:'sev-low'};
-const pinCls=p=>p.status==='done'?'pin-done':(SEV_PIN[p.sev]||'pin-int');
-const pinGly=p=>p.status==='done'?'✓':(p.sev==='Critical'?'!':'D');
-let drawerMode='view', drawerPin=null, draft=null, planSeq=240;
+const pinCls=d=>d.status==='Open'?(SEV_PIN[d.sev]||'pin-int'):'pin-done';
+const pinGly=d=>d.status==='Open'?(d.sev==='Critical'?'!':'D'):'✓';
+let drawerMode='view', drawerPin=null, draft=null, planSeq=400;
 function renderPins(){
-  const pi=document.getElementById('planInner'); if(!pi) return;
+  const pi=document.getElementById('planInner'); if(!pi||!sLevel) return;
   pi.querySelectorAll('.pin').forEach(e=>e.remove());
-  PLAN_PINS.forEach((p,i)=>{
+  DEFECTS.filter(d=>d.l===sLevel).forEach(d=>{
     const b=document.createElement('button');
-    b.className='pin '+pinCls(p)+(p===drawerPin?' sel':'');
-    b.style.left=p.x+'%'; b.style.top=p.y+'%';
-    b.innerHTML=`<span class="mk"><span>${pinGly(p)}</span></span>`;
-    b.addEventListener('click', ()=>openDef(i));
+    b.className='pin '+pinCls(d)+(d===drawerPin?' sel':'');
+    b.style.left=d.x+'%'; b.style.top=d.y+'%';
+    b.innerHTML=`<span class="mk"><span>${pinGly(d)}</span></span>`;
+    b.addEventListener('click', ()=>openDef(d));
     pi.appendChild(b);
   });
 }
 function openDrawerShell(){ document.getElementById('view2d').classList.add('drawer-on'); document.querySelector('.console').classList.add('drawer-open'); }
-function openDef(i){ drawerPin=PLAN_PINS[i]; drawerMode='view'; renderPins(); renderDrawer(); openDrawerShell(); }
+function openDef(d){ drawerPin=d; drawerMode='view'; renderPins(); renderDrawer(); openDrawerShell(); }
 function closeDrawer(){
   document.getElementById('view2d').classList.remove('drawer-on');
   document.querySelector('.console').classList.remove('drawer-open');
@@ -1242,7 +1393,7 @@ function renderDrawer(){
   }
   const p=drawerPin;
   if(drawerMode==='edit'){
-    dr.innerHTML=`<div class="dd-head"><div><div class="dd-k">Edit defect</div><div class="dd-ref">${p.ref}</div></div><button class="dd-x" onclick="cancelEdit()"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>`+
+    dr.innerHTML=`<div class="dd-head"><div><div class="dd-k">Edit defect</div><div class="dd-ref">${p.id}</div></div><button class="dd-x" onclick="cancelEdit()"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>`+
       `<div class="dd-body"><label class="ddlbl">Photos</label>`+
       `<div class="dd-thumbs">${thumbsHTML(p.images,true)}<button class="dd-add" onclick="document.getElementById('palWrap').style.display='flex'"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button></div>`+
       `<div id="palWrap" style="display:none">${paletteHTML()}</div>`+
@@ -1252,13 +1403,13 @@ function renderDrawer(){
       `<div class="dd-foot"><div class="row2"><button class="btn btn-secondary" onclick="cancelEdit()">Cancel</button><button class="btn btn-primary" onclick="saveEdit()"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg> Save changes</button></div></div>`;
     return;
   }
-  const resolved=p.status==='done';
-  dr.innerHTML=`<div class="dd-head"><div><div class="dd-k">View defect</div><div class="dd-ref">${p.ref}</div></div><button class="dd-icon" title="Edit" onclick="editDefect()"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button>${closeIcon}</div>`+
+  const resolved=p.status!=='Open';
+  dr.innerHTML=`<div class="dd-head"><div><div class="dd-k">View defect</div><div class="dd-ref">${p.id}</div></div><button class="dd-icon" title="Edit" onclick="editDefect()"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button>${closeIcon}</div>`+
     `<div class="dd-body"><div class="dd-hero">${shotSVG(p.images[0]||'crack')}<span class="pinmark coords">◆ ${(+p.x).toFixed(1)}% · ${(+p.y).toFixed(1)}%</span></div>`+
     (p.images.length>1?`<div class="dd-thumbs">${thumbsHTML(p.images,false)}</div>`:'')+
     `<div class="dd-field"><label>Defect title</label><div class="dd-val">${p.title}</div></div>`+
     `<div class="dd-field"><label>Location</label><div class="dd-val loc"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span>${locPath(p.room)}</span></div></div>`+
-    `<div class="dd-grid"><div><label class="ddlbl">Severity</label><div><span class="sev ${SEVCLS_VIEW[p.sev]}">${p.sev}</span></div></div><div><label class="ddlbl">Status</label><div class="dstat" style="height:34px"><span class="d" style="background:${resolved?'var(--st-done)':'var(--intent)'}"></span>${resolved?'Resolved':'Open'}</div></div></div>`+
+    `<div class="dd-grid"><div><label class="ddlbl">Severity</label><div><span class="sev ${SEVCLS_VIEW[p.sev]}">${p.sev}</span></div></div><div><label class="ddlbl">Status</label><div class="dstat" style="height:34px"><span class="d" style="background:${STAT_DOT[p.status]||'var(--intent)'}"></span>${p.status}</div></div></div>`+
     `<div class="dd-field"><label>Description</label><div class="dd-val">${p.desc}</div></div>`+
     `<div class="dd-grid"><div><label class="ddlbl">Assignee</label><div class="dd-val">${p.asg}</div></div><div><label class="ddlbl">Due date</label><div class="dd-val">${p.due}</div></div><div><label class="ddlbl">Work package</label><div class="dd-val">${p.wp}</div></div><div><label class="ddlbl">Task type</label><div class="dd-val">${p.tt}</div></div></div>`+
     `<div class="dd-hist"><h5>History</h5>${[...p.hist].reverse().map((h,i)=>`<div class="histrow${i===0?' now':''}"><span class="hdot"></span><div class="htext"><b>${h.t}</b><span>${h.w} · ${h.d}</span></div></div>`).join('')}</div></div>`+
@@ -1271,13 +1422,67 @@ function removeImg(idx){ const o=curObj(); captureInputs(o); o.images.splice(idx
 function editDefect(){ drawerMode='edit'; renderDrawer(); }
 function cancelEdit(){ drawerMode='view'; renderDrawer(); }
 function saveEdit(){ captureInputs(drawerPin); drawerPin.hist.push({t:'Defect updated',w:'You',d:'just now'}); drawerMode='view'; renderPins(); renderDrawer(); }
-function resolveDefect(){ drawerPin.status='done'; drawerPin.hist.push({t:'Marked Resolved',w:'You',d:'just now'}); renderPins(); renderDrawer(); }
-function reopenDefect(){ drawerPin.status='open'; drawerPin.hist.push({t:'Re-opened',w:'You',d:'just now'}); renderPins(); renderDrawer(); }
-function startCreate(x,y){ draft={x:+x,y:+y,images:[],title:'',sev:'High',desc:'',asg:'',due:'',wp:'',tt:'Defect',room:(sLevel&&sLevel.children&&sLevel.children[0]?sLevel.children[0].name:(sLevel?sLevel.name:'Room'))}; drawerMode='create'; drawerPin=null; renderDrawer(); openDrawerShell(); }
-function logDefect(){ captureInputs(draft); if(!draft.title) draft.title='New defect'; if(!draft.images.length) draft.images=['crack']; draft.ref='DEF-'+(planSeq++); draft.status='open'; draft.hist=[{t:'Defect logged',w:'You',d:'just now'}]; PLAN_PINS.push(draft); drawerPin=draft; draft=null; drawerMode='view'; renderPins(); renderDrawer(); }
+function resolveDefect(){ drawerPin.status='Resolved'; drawerPin.hist.push({t:'Marked Resolved',w:'You',d:'just now'}); renderPins(); renderDrawer(); }
+function reopenDefect(){ drawerPin.status='Open'; drawerPin.hist.push({t:'Re-opened',w:'You',d:'just now'}); renderPins(); renderDrawer(); }
+function startCreate(x,y){
+  const r0=(sLevel&&sLevel.children&&sLevel.children[0])?sLevel.children[0]:null;
+  draft={x:+x,y:+y,images:[],title:'',sev:'High',desc:'',asg:'',due:'',wp:'',tt:'Defect',status:'Open',
+    room:r0?r0.name:(sLevel?sLevel.name:'Room'), p:sProj,b:sBldg,l:sLevel,r:r0};
+  drawerMode='create'; drawerPin=null; renderDrawer(); openDrawerShell();
+}
+function logDefect(){
+  captureInputs(draft); if(!draft.title) draft.title='New defect'; if(!draft.images.length) draft.images=['crack'];
+  draft.id='DEF-'+(planSeq++); draft.status='Open'; draft.sevcls=SEVCLS[draft.sev]; draft.fav=false; draft.createdBy='You';
+  draft.hist=[{t:'Defect logged',w:'You',d:'just now'}];
+  DEFECTS.push(draft); drawerPin=draft; draft=null; drawerMode='view'; renderPins(); renderDrawer();
+}
 var placing=false;
 function startPlace(){ setView('2d'); placing=true; document.getElementById('placebar').style.display='flex'; document.getElementById('planInner').classList.add('placing'); }
 function cancelPlace(e){ if(e) e.stopPropagation(); placing=false; var pb=document.getElementById('placebar'); if(pb) pb.style.display='none'; var pi=document.getElementById('planInner'); if(pi) pi.classList.remove('placing'); }
+/* ===== Raise menu + Smart Capture ===== */
+function toggleRaise(e){ e.stopPropagation(); document.getElementById('raiseMenu').classList.toggle('on'); }
+function hideRaise(){ document.getElementById('raiseMenu').classList.remove('on'); }
+const DETECTED=[
+  {title:'Exposed Walkway Cables',trade:'Electrical Works',sev:'Critical',sevcls:'sev-crit',img:'joint',desc:'Loose cables across an active walkway; trip and shock risk.'},
+  {title:'Temporary Barricade Missing',trade:'Safety Works',sev:'High',sevcls:'sev-high',img:'socket',desc:'Hazard zone lacks barricade and warning signage.'}
+];
+let crOpt='combined', crSel=new Set();
+function openCapture(){
+  if(!sBldg){ sProj=sProj||TREE.children[0]; sBldg=sProj.children[0]; sLevel=sBldg.children[0]; }
+  document.getElementById('capScene').innerHTML=shotSVG('socket');
+  document.getElementById('captureView').className='capview on';
+  closeAI();
+}
+function closeCapture(){ document.getElementById('captureView').className='capview'; }
+function capShoot(){
+  const cv=document.getElementById('captureView'); cv.classList.add('analyzing');
+  setTimeout(()=>{ cv.classList.remove('analyzing'); cv.classList.add('reviewing'); crSel=new Set(DETECTED.map((_,i)=>i)); crOpt='combined'; renderCr(); }, 1600);
+}
+function capBack(){ document.getElementById('captureView').classList.remove('reviewing'); }
+function setCrOpt(o){ crOpt=o; document.getElementById('optCombined').classList.toggle('on',o==='combined'); document.getElementById('optMultiple').classList.toggle('on',o==='multiple'); document.getElementById('crSubmit').textContent=(o==='multiple'?`Log ${crSel.size} defects`:'Log combined defect'); }
+function renderCr(){
+  document.getElementById('crTitle').textContent=`AI detected ${DETECTED.length} issue${DETECTED.length>1?'s':''}`;
+  document.getElementById('crLoc').textContent=`${sProj?sProj.name:''} › ${sBldg?sBldg.name:''} › ${sLevel?sLevel.name:''}`;
+  document.getElementById('crList').innerHTML=DETECTED.map((d,i)=>{
+    const on=crSel.has(i);
+    return `<div class="dcd${on?' sel':' off'}" onclick="crToggle(${i})"><span class="dchk"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-11"/></svg></span><span class="dcd-im">${shotSVG(d.img)}</span><span class="b"><b>${d.title}</b><span class="tr">${d.trade}</span><span class="ds">${d.desc}</span><span class="sv"><span class="sev ${d.sevcls}">${d.sev}</span></span></span></div>`;
+  }).join('');
+  setCrOpt(crOpt);
+}
+function crToggle(i){ crSel.has(i)?crSel.delete(i):crSel.add(i); renderCr(); }
+function capSubmit(){
+  if(!crSel.size){ closeCapture(); return; }
+  const r0=(sLevel&&sLevel.children&&sLevel.children[0])?sLevel.children[0]:null;
+  const asgSel=document.getElementById('crAsg').value;
+  [...crSel].sort().forEach(i=>{
+    const d=DETECTED[i];
+    DEFECTS.push({id:'DEF-'+(planSeq++), title:d.title, status:'Open', sev:d.sev, sevcls:d.sevcls,
+      due:'2025-07-05', asg:(asgSel.indexOf('Select')===0?d.trade:asgSel), wp:'—', tt:'Defect', createdBy:'Smart Capture', fav:false,
+      desc:d.desc, images:[d.img], x:22+((planSeq*29)%52), y:26+((planSeq*41)%50), room:r0?r0.name:(sLevel?sLevel.name:'Room'),
+      hist:[{t:'Logged via Smart Capture',w:'You',d:'just now'}], p:sProj,b:sBldg,l:sLevel,r:r0});
+  });
+  closeCapture(); setView('2d'); renderPins();
+}
 let splashTimer=null;
 function go(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active', s.id===id));
@@ -1451,7 +1656,12 @@ function toggleFmenu(e,which){
 function setStatus(v){ defStatus=v; defSel.clear(); defPage=1; document.getElementById('statusMenu').classList.remove('on'); renderDefects(); }
 function setSev(v){ defSev=v; defSel.clear(); defPage=1; document.getElementById('sevMenu').classList.remove('on'); renderDefects(); }
 function clearFilters(){ defStatus='all'; defSev='all'; defPage=1; renderDefects(); }
-function rowTap(e,id){ if(e.target.closest('.dstar')) return; toggleSel(id); }
+function rowTap(e,id){
+  if(e.target.closest('.dchk')||e.target.closest('.dstar')) return;
+  const d=DEFECTS.find(x=>x.id===id); if(!d) return;
+  sProj=d.p; sBldg=d.b; sLevel=d.l;
+  closeDefects(); setView('2d'); openDef(d);
+}
 function rowCheck(e,id){ e.stopPropagation(); toggleSel(id); }
 function toggleSel(id){ defSel.has(id)?defSel.delete(id):defSel.add(id); renderDefects(); }
 function favTog(e,id){ e.stopPropagation(); const d=DEFECTS.find(x=>x.id===id); if(d) d.fav=!d.fav; renderDefects(); }
@@ -1463,6 +1673,7 @@ document.addEventListener('click', function(e){
   const lp=document.getElementById('levPop');
   if(lp && lp.classList.contains('on') && !e.target.closest('#levPop') && !e.target.closest('#levBtn')) lp.classList.remove('on');
   if(!e.target.closest('.fdrop')) document.querySelectorAll('.fmenu').forEach(m=>m.classList.remove('on'));
+  if(!e.target.closest('#raiseMenu') && !e.target.closest('.fab-raise')) hideRaise();
 });
 genDefects();
 renderSite();
