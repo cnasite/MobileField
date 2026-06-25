@@ -1333,16 +1333,28 @@ const STATUS_FILTERS={open:'Open',resolved:'Resolved',closed:'Closed',verified:'
 const SEV_FILTERS={critical:'Critical',high:'High',medium:'Medium',low:'Low'};
 let DEFECTS=[], defSeq=200, defScope=null, defStatus='all', defSev='all', defSel=new Set();
 let defPage=1, defVisible=[]; const PAGE_SIZE=7;
+const TITLE_IMG={'Exposed Electrical Wiring':'joint','Ceiling Water Leakage':'leak','Window Sealant Void':'crack','Lobby Tile Lippage':'tile','Emergency Light Fault':'light','Cracked Plaster':'crack','HVAC Condensate Drip':'leak','Door Misalignment':'hinge','Fire-stopping Missing':'socket','Cold Bridge at Reveal':'crack','Grout Cracking':'tile','Paint Blemish':'crack'};
+const D_TT=['Defect','NCR','Snagging','Observation'];
+const D_CREATOR=['Site Inspector','QA/QC Engineer','Site Engineer','Document Controller'];
+const D_DESC={'Exposed Electrical Wiring':'Loose conductors exposed in an active walk path; isolate and contain.','Ceiling Water Leakage':'Active drip staining the ceiling tile; trace the source above.','Window Sealant Void':'Perimeter sealant missing along the reveal; water ingress risk.','Lobby Tile Lippage':'Adjacent porcelain tiles show visible lippage at the walk line.','Emergency Light Fault':'Emergency luminaire fails self-test; battery not holding charge.','Cracked Plaster':'Crack tracking from the corner bead; rake out and fill.','HVAC Condensate Drip':'Condensate dripping from the FCU; check trap and fall.','Door Misalignment':'Leaf binds on the frame; hinge alignment out.','Fire-stopping Missing':'Service penetration not fire-stopped to specification.','Cold Bridge at Reveal':'Thermal bridge at the reveal; condensation likely.','Grout Cracking':'Grout lines cracking across the floor field.','Paint Blemish':'Visible roller marks and patchy coverage.'};
+const descFor=t=>D_DESC[t]||'Issue captured on site; review and action.';
 function genDefects(){
   DEFECTS=[]; defSeq=210; let i=0;
   TREE.children.forEach(p=>p.children.forEach(b=>b.children.forEach(l=>(l.children||[]).forEach(r=>{
     const c=r.counts||{};
     ['open','prog','rev','done'].forEach(st=>{
       for(let k=0;k<(c[st]||0);k++){
-        let status=D_STATUS[st]; if(st==='done') status=['Resolved','Closed','Verified'][i%3];
-        const sa=SEV_BY[st], sev=sa[i%sa.length];
-        DEFECTS.push({id:'DEF-'+(defSeq++), title:D_TITLES[i%D_TITLES.length], status, sev, sevcls:SEVCLS[sev],
-          due:`2025-06-${String(4+(i%24)).padStart(2,'0')}`, asg:D_ASG[i%D_ASG.length], wp:D_WP[i%D_WP.length], fav:(i%9===0), p,b,l,r});
+        let status=(st==='done')?['Resolved','Closed','Verified'][i%3]:'Open';
+        const sa=SEV_BY[st], sev=sa[i%sa.length], title=D_TITLES[i%D_TITLES.length];
+        const creator=D_CREATOR[i%D_CREATOR.length];
+        const created=`${String(2+(i%26)).padStart(2,'0')} Jun · ${String(8+(i%9)).padStart(2,'0')}:${String((i*7)%60).padStart(2,'0')}`;
+        const hist=[{t:'Defect logged',w:creator,d:created}];
+        if(status!=='Open') hist.push({t:'Marked '+status,w:D_ASG[i%D_ASG.length],d:created});
+        DEFECTS.push({id:'DEF-'+(defSeq++), title, status, sev, sevcls:SEVCLS[sev],
+          due:`2025-06-${String(4+(i%24)).padStart(2,'0')}`, asg:D_ASG[i%D_ASG.length], wp:D_WP[i%D_WP.length],
+          tt:D_TT[i%D_TT.length], createdBy:creator, fav:(i%9===0),
+          desc:descFor(title), images:[TITLE_IMG[title]||'crack'],
+          x:12+((i*37)%56), y:22+((i*53)%56), room:r.name, hist, p,b,l,r});
         i++;
       }
     });
