@@ -1211,7 +1211,7 @@ function goHome(){
   document.getElementById('view2d').classList.remove('show');
   document.getElementById('stub3d').classList.remove('show');
   document.getElementById('stub360').classList.remove('show');
-  cancelPlace(); closeDrawer(); closeAI(); renderSite();
+  cancelPlace(); closeDrawer(); closeAI(); closeDefects(); closeCapture(); renderSite();
 }
 /* ===== Site navigator (tree drill-down + context pane) ===== */
 const TREE={id:'root',name:'All sites',children:[
